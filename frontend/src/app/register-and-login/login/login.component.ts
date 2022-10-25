@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms'; import { UserDTO } from 'src/app/DTO/UserDTO';
 import { UsersService } from 'src/app/services/users.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'login',
@@ -18,16 +19,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private usersService: UsersService,
+    private authService: AuthService,
   ) {
     this.loginForm = this.formBuilder.group({
-      // username: [
-      //   null,
-      //   [
-      //     Validators.required,
-      //     Validators.minLength(5),
-      //     Validators.maxLength(30),
-      //   ],
-      // ],
       password: [
         null,
         [
@@ -52,18 +46,15 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.formHasValidationErrors()) return;
-    // const username = this.loginForm.get('username')?.value;
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
     const user: UserDTO = {
-      // username: username,
       password: password,
       email: email,
     };
 
-    // Send User and Admin Log to API with service
-    this.usersService.createUser(user);
+    this.authService.login(user);
   }
 
   formHasValidationErrors(): boolean {
