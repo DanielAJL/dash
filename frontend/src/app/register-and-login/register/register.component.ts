@@ -21,14 +21,14 @@ export class RegisterComponent implements OnInit {
     private usersService: UsersService,
   ) {
     this.registerForm = this.formBuilder.group({
-      username: [
-        null,
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(30),
-        ],
-      ],
+      // username: [
+      //   null,
+      //   [
+      //     Validators.required,
+      //     Validators.minLength(5),
+      //     Validators.maxLength(30),
+      //   ],
+      // ],
       password: [
         null,
         [
@@ -53,12 +53,12 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.formHasValidationErrors()) return;
-    const username = this.registerForm.get('username')?.value;
+    // const username = this.registerForm.get('username')?.value;
     const email = this.registerForm.get('email')?.value;
     const password = this.registerForm.get('password')?.value;
 
     const user: UserDTO = {
-      username: username,
+      // username: username,
       password: password,
       email: email,
     };
