@@ -13,5 +13,5 @@ To run the Angular application follow the next steps:
 ## Running the Express server:
 To run the Express server follow the next steps:
 1. Navigate to the `backend` directory.
-2. Run `npm i` and `npm run server`.
+2. Run `npm i` and `npm run dev` to launch a server in development mode.
 3. Open `http://localhost:3000/` in your browser.
