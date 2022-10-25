@@ -7,16 +7,16 @@ import AuthService from '@services/auth.service';
 class AuthController {
   public authService = new AuthService();
 
-  public signUp = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const userData: CreateUserDto = req.body;
-      const signUpUserData: User = await this.authService.signup(userData);
+  // public signUp = async (req: Request, res: Response, next: NextFunction) => {
+  //   try {
+  //     const userData: CreateUserDto = req.body;
+  //     const signUpUserData: User = await this.authService.signup(userData);
 
-      res.status(201).json({ data: signUpUserData, message: 'signup' });
-    } catch (error) {
-      next(error);
-    }
-  };
+  //     res.status(201).json({ data: signUpUserData, message: 'signup' });
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // };
 
   public logIn = async (req: Request, res: Response, next: NextFunction) => {
     try {
