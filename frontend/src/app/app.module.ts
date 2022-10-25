@@ -4,9 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterAndLoginModule } from './register-and-login/register-and-login.module';
 
 // Components
 import { AppComponent } from './app.component';
+// import { RegisterComponent } from './register-and-login/register/register.component';
+// import { LoginComponent } from './register-and-login/login/login.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,7 +17,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    RegisterAndLoginModule
   ],
   providers: [],
   bootstrap: [AppComponent],
