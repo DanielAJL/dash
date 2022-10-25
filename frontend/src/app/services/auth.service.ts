@@ -11,13 +11,13 @@ export class AuthService {
 
   async login(user: UserDTO) {
     const response = await this.apiService.post('login', user);
-    return response.data as UserDTO[];
+    return response.data as UserDTO;
   }
 
-  // async logout(user: UserDTO) {
-  //   const response = await this.apiService.post('logout');
-  //   return response.data as UserDTO;
-  // }
+  async logout(user: UserDTO) {
+    const response = await this.apiService.post('logout', user);
+    return response.data as UserDTO;
+  }
 
   // async createUser() {
   //   const response = await this.apiService.post(`${this.API_PATH}`, user);

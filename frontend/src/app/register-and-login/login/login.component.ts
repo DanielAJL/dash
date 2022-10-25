@@ -15,6 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  user!: UserDTO;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login() {
+  async login() {
     if (this.formHasValidationErrors()) return;
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
@@ -54,7 +55,17 @@ export class LoginComponent implements OnInit {
       email: email,
     };
 
-    this.authService.login(user);
+    this.user = await this.authService.login(user);
+  }
+
+  async logout() {
+    const result: UserDTO = await this.authService.logout(this.user);
+    console.log(result);
+  }
+
+  getCurrentUser() {
+    // const user = this.usersService.getUser();
+    // return user;
   }
 
   formHasValidationErrors(): boolean {
