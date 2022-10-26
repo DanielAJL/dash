@@ -8,11 +8,12 @@ import { RegisterAndLoginModule } from './register-and-login/register-and-login.
 
 // Components
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 // import { RegisterComponent } from './register-and-login/register/register.component';
 // import { LoginComponent } from './register-and-login/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DashboardComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
