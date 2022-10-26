@@ -5,7 +5,6 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms'; import { UserDTO } from 'src/app/DTO/UserDTO';
-import { UsersService } from 'src/app/services/users.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -19,7 +18,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private usersService: UsersService,
     private authService: AuthService,
   ) {
     this.loginForm = this.formBuilder.group({
@@ -35,15 +33,14 @@ export class LoginComponent implements OnInit {
         null,
         [
           Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(50),
+          Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)
         ],
       ],
     });
   }
 
   ngOnInit(): void {
-    this.getCurrentUser();
+    this.checkUserActiveSession();
   }
 
   async login() {
@@ -61,12 +58,12 @@ export class LoginComponent implements OnInit {
 
   async logout() {
     const result: UserDTO = await this.authService.logout(this.user);
-    console.log(result);
+    console.log("logged out: ", result);
   }
 
-  async getCurrentUser() {
+  async checkUserActiveSession(): Promise<UserDTO> {
     const user = await this.authService.getCurrentSession();
-    return user;
+    return this.user = user;
   }
 
   formHasValidationErrors(): boolean {

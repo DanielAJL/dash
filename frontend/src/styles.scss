@@ -2,3 +2,33 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+// Components
+login {
+  max-width: 360px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  #loginForm {
+    padding: 15px;
+  }
+
+  .info-link a {
+    color: #000;
+  }
+}
+
+// Bootstrap
+button.btn {
+  margin-top: 3px;
+}
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+	pointer-events: initial;
+	opacity: .5;
+	cursor: not-allowed;
+}
