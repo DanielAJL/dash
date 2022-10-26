@@ -14,7 +14,7 @@
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" autocomplete="off">
                 <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email is required! </mat-error>
-                <mat-error *ngIf="loginForm.get('email')?.hasError('pattern')">Please enter a valid email address!
+                <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Please enter a valid email address!
                 </mat-error>
               </mat-form-field>
             </div>
@@ -52,5 +52,8 @@
 </div>
 
 
+
 <button class="btn btn-sm btn-danger" (click)="logout()">logout</button>
 <button class="btn btn-sm btn-secondary" (click)="checkUserActiveSession()">get current user</button>
+<button class="btn btn-sm btn-primary" (click)="generateWorkingDummyUserFormData()">form working user</button>
+<button class="btn btn-sm btn-primary" (click)="generateInvalidDummyUserFormData()">form invalid user</button>

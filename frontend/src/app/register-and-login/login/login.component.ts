@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms'; import { UserDTO } from 'src/app/DTO/UserDTO';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { Router, ParamMap } from '@angular/router';
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
@@ -15,10 +15,12 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   user!: UserDTO;
+  dummyUser?: UserDTO;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
       password: [
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
         null,
         [
           Validators.required,
-          Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)
+          Validators.email
         ],
       ],
     });
@@ -41,6 +43,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkUserActiveSession();
+    this.dummyUser = {
+      email: "tester123@test.com",
+      password: "tester123"
+    }
+  }
+
+  generateWorkingDummyUserFormData() {
+    this.loginForm.controls['email'].setValue(this.dummyUser?.email);
+    this.loginForm.controls['password'].setValue(this.dummyUser?.password);
+  }
+
+  generateInvalidDummyUserFormData() {
+    this.loginForm.controls['email'].setValue(this.dummyUser?.email + '1');
+    this.loginForm.controls['password'].setValue(this.dummyUser?.password + '1');
   }
 
   async login() {
@@ -57,8 +73,7 @@ export class LoginComponent implements OnInit {
   }
 
   async logout() {
-    const result: UserDTO = await this.authService.logout(this.user);
-    console.log("logged out: ", result);
+    await this.authService.logout(this.user);
   }
 
   async checkUserActiveSession(): Promise<UserDTO> {

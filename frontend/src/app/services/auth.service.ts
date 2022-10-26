@@ -1,26 +1,34 @@
 import { Injectable } from '@angular/core';
 import { UserDTO } from '../DTO/UserDTO';
 import { ApiService } from './api.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   async login(user: UserDTO): Promise<UserDTO> {
     const response = await this.apiService.post('login', user);
+    this.router.navigate(['dashboard'])
     return response.data as UserDTO;
   }
 
-  async logout(user: UserDTO): Promise<UserDTO> {
+  async logout(user: UserDTO) {
     const response = await this.apiService.post('logout', user);
-    return response.data as UserDTO;
+    if (response.data) {
+      this.router.navigate(['login']);
+    }
+    // return response.data as UserDTO; : Promise<UserDTO>
   }
 
   async getCurrentSession(): Promise<UserDTO> {
     const response = await this.apiService.get('session');
+    if (response.data) {
+      this.router.navigate(['dashboard']);
+    }
     return response.data as UserDTO;
   }
 
