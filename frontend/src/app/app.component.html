@@ -1,1 +1,40 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="navigation-container">
+  <mat-drawer class="navigation" #navigation mode="side" opened *ngIf="user">
+    <div class="nav-div">
+
+      <p class="nav-title">Navigation</p>
+      <ul class="nav-list">
+        <li class="nav-link"><a routerLink=""><i class="fa-solid fa-user"
+              style="font-size: 12px"></i><span>Dashboard</span></a>
+        </li>
+        <li class="nav-link"><a routerLink="admin"><i class="fa-solid fa-diagram-project"></i><span>Admin
+              Panel</span></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- <div class="nav-div">
+      <p class="nav-title">Notifications</p>
+      <ul class="nav-list">
+        <li class="nav-link"><a routerLink="admin-logs"><i class="fa-solid fa-gear"></i><span>Logs</span></a>
+        </li>
+      </ul>
+    </div> -->
+
+    <div class="nav-div">
+      <p class="nav-title">Actions</p>
+      <ul class="nav-list">
+        <li class="nav-link" (click)="logout()">
+          <a routerLink="">
+            <i class="fa-solid fa-sign-out"></i><span>Logout</span></a>
+        </li>
+      </ul>
+    </div>
+  </mat-drawer>
+
+  <!-- MAIN APP CONTENT RENDERED BY ROUTER: -->
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+
+</mat-drawer-container>

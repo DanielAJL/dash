@@ -1,19 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #e1e1e1; }
 
-
-// Components
-login {
+/********************* Register & Login ***********************
+***************************************************************/
+login, register {
   max-width: 360px;
   margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  min-height: 100vh;
 
-  #loginForm {
+  #loginForm, #registerForm {
     padding: 15px;
   }
 
@@ -22,7 +23,8 @@ login {
   }
 }
 
-// Bootstrap
+/********************* B O O T S T R A P ***********************
+***************************************************************/
 button.btn {
   margin-top: 3px;
 }

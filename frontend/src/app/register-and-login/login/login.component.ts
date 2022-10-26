@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.checkUserActiveSession();
+    // this.checkUserActiveSession();
     this.dummyUser = {
       email: "tester123@test.com",
       password: "tester123"
@@ -76,10 +76,10 @@ export class LoginComponent implements OnInit {
     await this.authService.logout(this.user);
   }
 
-  async checkUserActiveSession(): Promise<UserDTO> {
-    const user = await this.authService.getCurrentSession();
-    return this.user = user;
-  }
+  // async checkUserActiveSession(): Promise<UserDTO> {
+  //   const user = await this.authService.getCurrentSession();
+  //   return this.user = user;
+  // }
 
   formHasValidationErrors(): boolean {
     let errorCount: number = 0;

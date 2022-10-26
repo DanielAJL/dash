@@ -16,18 +16,20 @@ export class AuthService {
     return response.data as UserDTO;
   }
 
-  async logout(user: UserDTO) {
+  async logout(user: UserDTO): Promise<UserDTO> {
     const response = await this.apiService.post('logout', user);
     if (response.data) {
       this.router.navigate(['login']);
     }
-    // return response.data as UserDTO; : Promise<UserDTO>
+    return response.data as UserDTO;
   }
 
   async getCurrentSession(): Promise<UserDTO> {
     const response = await this.apiService.get('session');
     if (response.data) {
       this.router.navigate(['dashboard']);
+    } else {
+      this.router.navigate(['login']);
     }
     return response.data as UserDTO;
   }

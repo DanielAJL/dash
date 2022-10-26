@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { async } from 'rxjs';
 import { UserDTO } from './DTO/UserDTO';
-import { UsersService } from './services/users.service';
-
+import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,24 +8,22 @@ import { UsersService } from './services/users.service';
 })
 export class AppComponent implements OnInit {
   title = 'frontend';
-  users: UserDTO[] | undefined;
+  user!: UserDTO;
 
-  constructor(private usersService: UsersService) {
+  constructor(private authService: AuthService) {
 
   }
 
-  ngOnInit(): void {
-    this.getAllUsers();
+  async ngOnInit() {
   }
 
-  async getAllUsers() {
-    // retrieve detailed user information
-    await this.usersService.getUsers().then((res) => {
-      console.log(res);
-      this.users = res;
-    }).catch((err) => {
-      console.log(err);
-    });
+  async checkUserActiveSession(): Promise<UserDTO> {
+    const user = await this.authService.getCurrentSession();
+    return user;
   }
 
+  async logout() {
+    await this.authService.logout(this.user);
+    // this.user = {};
+  }
 }
