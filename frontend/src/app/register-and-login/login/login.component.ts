@@ -63,9 +63,9 @@ export class LoginComponent implements OnInit {
     console.log(result);
   }
 
-  getCurrentUser() {
-    // const user = this.usersService.getUser();
-    // return user;
+  async getCurrentUser() {
+    const user = await this.authService.getCurrentSession();
+    return user;
   }
 
   formHasValidationErrors(): boolean {

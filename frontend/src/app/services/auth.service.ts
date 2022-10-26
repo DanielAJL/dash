@@ -9,13 +9,18 @@ export class AuthService {
 
   constructor(private apiService: ApiService) { }
 
-  async login(user: UserDTO) {
+  async login(user: UserDTO): Promise<UserDTO> {
     const response = await this.apiService.post('login', user);
     return response.data as UserDTO;
   }
 
-  async logout(user: UserDTO) {
+  async logout(user: UserDTO): Promise<UserDTO> {
     const response = await this.apiService.post('logout', user);
+    return response.data as UserDTO;
+  }
+
+  async getCurrentSession(): Promise<UserDTO> {
+    const response = await this.apiService.get('session');
     return response.data as UserDTO;
   }
 
