@@ -15,25 +15,28 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {
 
     // WRITE AN AUTH GUARD TO REPLACE THIS CODE.
-    this.router.events.forEach(event => {
-      if (event instanceof NavigationEnd) {
-        this.checkUserActiveSession().then((res) => {
-          if (res.data) {
-            this.isLoggedIn = true;
-          } else {
-            this.isLoggedIn = false;
-          }
-        });
-      }
-    })
+    // this.router.events.forEach(event => {
+    //   if (event instanceof NavigationEnd) {
+    //     this.checkUserActiveSession().then((res) => {
+    //       if (res) {
+    //         console.log(res);
+
+    //         this.isLoggedIn = true;
+    //       } else {
+    //         this.isLoggedIn = false;
+    //       }
+    //     });
+    //   }
+    // })
+
+    this.checkUserActiveSession();
   }
 
   async ngOnInit() {
   }
 
   async checkUserActiveSession() {
-    const user = await this.authService.getCurrentSession();
-    return user;
+    this.isLoggedIn = await this.authService.getCurrentSession();
   }
 
   async logout() {
