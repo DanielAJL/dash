@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     this.router.events.forEach(event => {
       if (event instanceof NavigationEnd) {
         this.checkUserActiveSession().then((res) => {
-          if (res.data) {
+          if (res) {
             this.isLoggedIn = true;
           } else {
             this.isLoggedIn = false;
@@ -31,9 +31,10 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
   }
 
-  async checkUserActiveSession() {
-    const user = await this.authService.getCurrentSession();
-    return user;
+  async checkUserActiveSession(): Promise<boolean> {
+    this.isLoggedIn = await this.authService.getCurrentSession();
+    return this.isLoggedIn;
+
   }
 
   async logout() {
