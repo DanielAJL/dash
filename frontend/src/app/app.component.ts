@@ -19,16 +19,19 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         this.checkUserActiveSession().then((res) => {
           if (res) {
+            this.user = res as UserDTO;
             this.isLoggedIn = true;
+            // set user data
           } else {
             this.isLoggedIn = false;
           }
         });
       }
-    })
+    });
   }
 
   async ngOnInit() {
+
   }
 
   async checkUserActiveSession(): Promise<boolean> {
@@ -40,9 +43,10 @@ export class AppComponent implements OnInit {
   async logout() {
     await this.authService.logout(this.user).then(user => {
       if (user) {
+        // logout success
         this.isLoggedIn = false;
       }
     });
-
   }
+
 }
