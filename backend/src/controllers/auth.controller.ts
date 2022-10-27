@@ -42,13 +42,10 @@ class AuthController {
     }
   };
 
-  public getCurrentSession = async (req: RequestWithUser, res: Response, next: NextFunction) => {
+  public getCurrentSession = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userData: User = req.user;
-      // return userData;
-      // const logOutUserData: User = await this.authService.logout(userData);
-
-      res.status(200).json({ data: userData, message: 'current_user_session' });
+      // console.log(req.body);
+      res.status(200).json({ data: req.body, message: 'current_user_session' });
     } catch (error) {
       next(error);
     }

@@ -24,14 +24,14 @@ export class AuthService {
     return response.data as UserDTO;
   }
 
-  async getCurrentSession(): Promise<UserDTO> {
+  async getCurrentSession() {
     const response = await this.apiService.get('session');
     if (response.data) {
       this.router.navigate(['dashboard']);
     } else {
       this.router.navigate(['login']);
     }
-    return response.data as UserDTO;
+    return response;
   }
 
   // async createUser() {
