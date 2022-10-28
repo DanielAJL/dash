@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserDTO } from './DTO/UserDTO';
 import { AuthService } from './services/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { SharedDataService } from './services/shared-data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
   user!: UserDTO;
   isLoggedIn!: boolean;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private sharedDataService: SharedDataService) {
 
     // WRITE AN AUTH GUARD TO REPLACE THIS CODE.
     this.router.events.forEach(event => {
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
           if (res) {
             this.user = res as UserDTO;
             this.isLoggedIn = true;
-            // set user data
+            // TODO set user data here for sharing (BehaviourSubject?):
+            this.sharedDataService.setUserObs(this.user);
           } else {
             this.isLoggedIn = false;
           }
@@ -31,7 +33,11 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.sharedDataService.getUserObs().subscribe(user => {
+      this.user = user;
+      console.log(user);
 
+    });
   }
 
   async checkUserActiveSession(): Promise<boolean> {

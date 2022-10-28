@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDTO } from '../DTO/UserDTO';
+import { SharedDataService } from '../services/shared-data.service';
 
 @Component({
   selector: 'dashboard',
@@ -9,9 +10,14 @@ import { UserDTO } from '../DTO/UserDTO';
 export class DashboardComponent implements OnInit {
   user!: UserDTO;
 
-  constructor() { }
+  constructor(private sharedDataService: SharedDataService) { }
 
   ngOnInit(): void {
+    this.sharedDataService.getUserObs().subscribe(user => {
+      this.user = user;
+      console.log(user);
+
+    });
   }
 
 }
