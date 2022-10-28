@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { CreateUserDTO } from '../DTO/CreateUserDTO';
 import { UserDTO } from '../DTO/UserDTO';
 import { SharedDataService } from '../services/shared-data.service';
 import { UsersService } from '../services/users.service';
@@ -42,6 +43,8 @@ export class DashboardComponent implements OnInit {
 
   public async updateProfile() {
     if (this.formHasValidationErrors()) return;
+    this.user.name = this.userBasicProfile.get('name')?.value;
+    this.usersService.updateUser(this.user._id!, this.user);
   }
 
 

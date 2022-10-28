@@ -4,7 +4,8 @@ import {
   FormGroup,
   ValidationErrors,
   Validators,
-} from '@angular/forms'; import { UserDTO } from 'src/app/DTO/UserDTO';
+} from '@angular/forms';
+import { CreateUserDTO } from 'src/app/DTO/CreateUserDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, ParamMap } from '@angular/router';
 @Component({
@@ -14,8 +15,8 @@ import { Router, ParamMap } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  user!: UserDTO;
-  dummyUser?: UserDTO;
+  user!: CreateUserDTO;
+  dummyUser?: CreateUserDTO;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,7 +65,7 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
-    const user: UserDTO = {
+    const user: CreateUserDTO = {
       password: password,
       email: email,
     };

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CreateUserDTO } from './DTO/CreateUserDTO';
 import { UserDTO } from './DTO/UserDTO';
 import { AuthService } from './services/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         this.checkUserActiveSession().then((res) => {
           if (res) {
-            this.user = res as UserDTO;
+            this.user = res as unknown as UserDTO;
             this.isLoggedIn = true;
             // TODO set user data here for sharing (BehaviourSubject?):
             this.sharedDataService.setUserObs(this.user);

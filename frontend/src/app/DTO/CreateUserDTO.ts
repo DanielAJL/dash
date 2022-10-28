@@ -1,6 +1,7 @@
-export class UserDTO {
+
+export class CreateUserDTO {
   _id?: string;
+  // username?: string;
   password?: string;
   email?: string;
-  name?: string;
 }
