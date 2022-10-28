@@ -36,8 +36,8 @@ export class ApiService {
     // return this.http.post(`${this.ROOT_URL}/${route}`, payload);
   }
 
-  async put(route: string, payload: Object) {
-    return await this.sendRequest(PUT, route, payload)
+  async patch(route: string, payload: Object) {
+    return await this.sendRequest(PATCH, route, payload)
     // return this.http.patch(`${this.ROOT_URL}/${route}`, payload);
   }
 
@@ -56,8 +56,8 @@ export class ApiService {
         case POST:
           observable = this.http.post(`${this.ROOT_URL}/${route}`, payload);
           break;
-        case PUT:
-          observable = this.http.put(`${this.ROOT_URL}/${route}`, payload);
+        case PATCH:
+          observable = this.http.patch(`${this.ROOT_URL}/${route}`, payload);
           break;
         case DELETE:
           observable = this.http.delete(`${this.ROOT_URL}/${route}`);

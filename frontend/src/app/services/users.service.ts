@@ -32,7 +32,7 @@ export class UsersService {
   }
 
   async updateUser(userId: string, user: UserDTO) {
-    const response = await this.apiService.put(`${this.API_PATH}/${userId}`, user);
+    const response = await this.apiService.patch(`${this.API_PATH}/${userId}`, user);
     return response.data as UserDTO;
   }
 
