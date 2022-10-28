@@ -2,28 +2,37 @@
   <mat-card>
     <div class="row">
       <div class="col-12">
-        <h1>Dashboard</h1>
+        <h1>Welcome</h1>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt accusamus totam veritatis ab nostrum, cum
-          blanditiis minima fugiat harum laudantium dicta maxime aspernatur commodi dolore architecto. Accusamus
-          voluptates autem magni!
-          Voluptatibus a error natus eius recusandae facere consequuntur. Sed repudiandae maiores mollitia ipsum
-          laborum. Rerum repellat dolore distinctio, a adipisci minus, magnam qui eligendi sunt aperiam quidem eum atque
-          iste?
-          Corrupti mollitia, quos voluptatibus eos quae nihil error sint labore, placeat voluptatum ad ex nemo autem
-          vitae qui aut ipsum, repellendus porro vero quaerat? Quod modi repellat ex error obcaecati?
-          Nobis ab tenetur ipsa pariatur esse illum molestiae ipsum, expedita non eveniet natus quos error dolorum
-          nostrum laborum aperiam veritatis sequi repellendus? Quos illo quod nihil blanditiis aliquid, id ex!
-          Quo in architecto velit dolorem non rerum quia unde reprehenderit error veniam corrupti praesentium hic nobis
-          itaque, quisquam obcaecati aspernatur facere fugiat. Illo fuga aliquam tempora corrupti atque ex sapiente?
-          Sequi aperiam facere architecto harum labore molestiae iure voluptas blanditiis doloribus. Iure qui
-          repudiandae ad, blanditiis nulla enim harum nemo quos deserunt odio nihil? Iure aliquam nulla libero facere
-          distinctio?
-          Doloribus harum est quidem sunt! Id velit tenetur deserunt quibusdam quae atque ipsa incidunt laudantium.
-          Sequi accusamus debitis cum voluptatibus qui earum. Aut nam porro cupiditate quae id officiis laudantium.</p>
+        <form id="loginForm" [formGroup]="userBasicProfile">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="text-center">Update Profile:</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" autocomplete="off">
+                <mat-error *ngIf="userBasicProfile.get('name')?.hasError('required')">Name is required! </mat-error>
+                <mat-error *ngIf="userBasicProfile.get('name')?.hasError('minlength')">Name must be at least 2
+                  characters.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row actions">
+            <div class="col-12">
+              <button class="btn btn-primary w-100" (click)="updateProfile()"
+                [disabled]="!userBasicProfile.valid">Update profile</button>
+              <!-- <button class="btn btn-sm btn-secondary w-100" [routerLink]="['/register']">Register</button> -->
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </mat-card>
