@@ -36,8 +36,6 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     this.sharedDataService.getUserObs().subscribe(user => {
       this.user = user;
-      console.log(user);
-
     });
   }
 

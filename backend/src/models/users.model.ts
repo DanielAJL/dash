@@ -15,6 +15,10 @@ const userSchema: Schema = new Schema({
     type: String,
     required: false,
   },
+  experienceLevel: {
+    type: String,
+    required: false,
+  },
 });
 
 const userModel = model<User & Document>('User', userSchema);

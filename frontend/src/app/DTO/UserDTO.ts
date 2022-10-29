@@ -3,4 +3,5 @@ export class UserDTO {
   password?: string;
   email?: string;
   name?: string;
+  experienceLevel?: string;
 }

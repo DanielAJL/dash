@@ -21,4 +21,7 @@ export class UserDTO {
 
   @IsString()
   public name?: string;
+
+  @IsString()
+  public experienceLevel?: string;
 }

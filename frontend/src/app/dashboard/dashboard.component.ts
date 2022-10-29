@@ -13,7 +13,7 @@ import { EXPERIENCES } from '../../constants';
 export class DashboardComponent implements OnInit {
   user!: UserDTO;
   userBasicProfile: FormGroup;
-  EXPERIENCES = EXPERIENCES;
+  experiences = EXPERIENCES;
 
   constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService) {
     this.userBasicProfile = this.formBuilder.group({
@@ -24,15 +24,19 @@ export class DashboardComponent implements OnInit {
           Validators.minLength(2),
         ],
       ],
+      experienceLevel: [
+        null,
+        [Validators.required]
+      ]
     });
   }
 
   ngOnInit(): void {
     this.sharedDataService.getUserObs().subscribe(user => {
       if (user) {
-        console.log("SADNSASD");
+        this.user = user;
       }
-      this.user = user;
+      // user is null here:
     });
   }
 
@@ -45,9 +49,12 @@ export class DashboardComponent implements OnInit {
   public async updateProfile() {
     if (this.formHasValidationErrors()) return;
     this.user.name = this.userBasicProfile.get('name')?.value;
+    this.user.experienceLevel = this.userBasicProfile.get('experienceLevel')?.value[0];
     this.usersService.updateUser(this.user._id!, this.user);
   }
-
+  onNgModelChange(event: Event) {
+    console.log('On ngModelChange : ', event);
+  }
 
   private formHasValidationErrors(): boolean {
     let errorCount: number = 0;

@@ -2,13 +2,13 @@
   <mat-card>
     <div class="row">
       <div class="col-12">
-        <h1>Welcome <span class="user-name" *ngIf="user.name">{{ user.name }}</span></h1>
+        <h1>Welcome <span class="user-name" *ngIf="user?.name">{{ user.name }}</span></h1>
       </div>
     </div>
   </mat-card>
 </div>
 
-<div class="container" *ngIf="!user.name">
+<div class="container" *ngIf="!user?.name">
   <mat-card>
     <div class="row">
       <div class="col-12">
@@ -41,6 +41,14 @@
 
           <div class="row">
             <div class="col-12">
+              <mat-selection-list #list formControlName="experienceLevel" [multiple]="false">
+                <mat-list-option *ngFor="let exp of experiences" [value]="exp">
+                  {{exp}}
+                </mat-list-option>
+                <mat-error *ngIf="userBasicProfile.get('experienceLevel')?.hasError('required')">
+                  Experience level is
+                  required! </mat-error>
+              </mat-selection-list>
 
             </div>
           </div>
