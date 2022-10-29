@@ -1,5 +1,7 @@
-import { IsEmail, IsString } from 'class-validator';
+import { IsArray, IsEmail, IsNotEmptyObject, IsString } from 'class-validator';
 import { Types } from 'mongoose';
+import { LanguageDTO } from './language.dto';
+// import { LanguageDTO } from '@/DTOs/language.dto';
 // type MyRef<T> = <T & { _id: Types.ObjectId }, Types.ObjectId & { _id: Types.ObjectId }>;
 export class CreateUserDTO {
   @IsEmail()
@@ -24,4 +26,7 @@ export class UserDTO {
 
   @IsString()
   public experienceLevel?: string;
+
+  @IsArray()
+  public languages?: Array<LanguageDTO>;
 }

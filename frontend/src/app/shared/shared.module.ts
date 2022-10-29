@@ -21,6 +21,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -41,6 +43,7 @@ import { MatListModule } from '@angular/material/list';
     MatCheckboxModule,
     MatSelectModule,
     MatListModule,
+    MatButtonToggleModule,
   ],
   exports: [
     CommonModule,
@@ -60,6 +63,7 @@ import { MatListModule } from '@angular/material/list';
     MatCheckboxModule,
     MatSelectModule,
     MatListModule,
+    MatButtonToggleModule,
   ],
 })
 export class SharedModule { }

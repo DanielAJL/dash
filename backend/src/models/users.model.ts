@@ -1,6 +1,6 @@
 import { model, Schema, Document } from 'mongoose';
 import { User } from '@interfaces/users.interface';
-
+import { LanguageDTO } from '@/DTOs/language.dto';
 const userSchema: Schema = new Schema({
   email: {
     type: String,
@@ -17,6 +17,10 @@ const userSchema: Schema = new Schema({
   },
   experienceLevel: {
     type: String,
+    required: false,
+  },
+  languages: {
+    type: Array<LanguageDTO>,
     required: false,
   },
 });

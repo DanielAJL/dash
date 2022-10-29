@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/f
 import { UserDTO } from '../DTO/UserDTO';
 import { SharedDataService } from '../services/shared-data.service';
 import { UsersService } from '../services/users.service';
-import { EXPERIENCES } from '../../constants';
+import { EXPERIENCES, LANGUAGES } from '../../constants';
+import { LanguageDTO } from '../DTO/LanguageDTO';
 
 @Component({
   selector: 'dashboard',
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit {
   user!: UserDTO;
   userBasicProfile: FormGroup;
   experiences = EXPERIENCES;
+  languages = LANGUAGES;
 
   constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService) {
     this.userBasicProfile = this.formBuilder.group({
@@ -27,7 +29,11 @@ export class DashboardComponent implements OnInit {
       experienceLevel: [
         null,
         [Validators.required]
-      ]
+      ],
+      languages: [
+        null,
+        [Validators.required]
+      ],
     });
   }
 
@@ -50,6 +56,10 @@ export class DashboardComponent implements OnInit {
     if (this.formHasValidationErrors()) return;
     this.user.name = this.userBasicProfile.get('name')?.value;
     this.user.experienceLevel = this.userBasicProfile.get('experienceLevel')?.value[0];
+    this.user.languages = this.userBasicProfile.get('languages')?.value;
+    console.log(this.user);
+
+
     this.usersService.updateUser(this.user._id!, this.user);
   }
   onNgModelChange(event: Event) {

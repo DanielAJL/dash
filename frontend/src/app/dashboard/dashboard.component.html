@@ -2,7 +2,7 @@
   <mat-card>
     <div class="row">
       <div class="col-12">
-        <h1>Welcome <span class="user-name" *ngIf="user?.name">{{ user.name }}</span></h1>
+        <h1>Welcome<span class="user-name" *ngIf="user?.name"> {{ user.name }}</span></h1>
       </div>
     </div>
   </mat-card>
@@ -10,29 +10,25 @@
 
 <div class="container" *ngIf="!user?.name">
   <mat-card>
-    <div class="row">
-      <div class="col-12">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates doloribus officiis perspiciatis magnam et
-        mollitia est dolorem id. Voluptas magnam illum, accusamus quae asperiores ipsum incidunt.
-      </div>
-    </div>
 
     <div class="row">
       <div class="col-12">
         <form id="loginForm" [formGroup]="userBasicProfile">
           <div class="row">
             <div class="col-12">
-              <h1 class="text-center">Update Profile:</h1>
+              <h1>Personalize profile:</h1>
             </div>
           </div>
 
           <div class="row">
             <div class="col-12">
               <mat-form-field appearance="fill">
-                <mat-label>Name</mat-label>
+                <mat-label>Your name</mat-label>
                 <input matInput formControlName="name" autocomplete="off">
-                <mat-error *ngIf="userBasicProfile.get('name')?.hasError('required')">Name is required! </mat-error>
-                <mat-error *ngIf="userBasicProfile.get('name')?.hasError('minlength')">Name must be at least 2
+                <mat-error *ngIf="userBasicProfile.get('name')?.hasError('required')">Name is required!
+                </mat-error>
+                <mat-error *ngIf="userBasicProfile.get('name')?.hasError('minlength')">Name must be at
+                  least 2
                   characters.
                 </mat-error>
               </mat-form-field>
@@ -40,24 +36,45 @@
           </div>
 
           <div class="row">
-            <div class="col-12">
+            <div class="col-6">
               <mat-selection-list #list formControlName="experienceLevel" [multiple]="false">
                 <mat-list-option *ngFor="let exp of experiences" [value]="exp">
                   {{exp}}
                 </mat-list-option>
-                <mat-error *ngIf="userBasicProfile.get('experienceLevel')?.hasError('required')">
-                  Experience level is
-                  required! </mat-error>
               </mat-selection-list>
-
+              <mat-error *ngIf="userBasicProfile.get('experienceLevel')?.hasError('required')">
+                Experience level is required!
+              </mat-error>
+            </div>
+            <div class="col-6">
+              <mat-button-toggle-group name="languages" formControlName="languages" aria-label="Languages" multiple>
+                <mat-button-toggle *ngFor="let language of languages" [value]="language"><i
+                    class="{{language.icon}}"></i> {{language.name}}
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+              <mat-error *ngIf="userBasicProfile.get('languages')?.hasError('required')">
+                Language is required!
+              </mat-error>
             </div>
           </div>
 
+          <!-- <div class="row">
+            <div class="col-12">
+              <mat-button-toggle-group name="languages" formControlName="languages" aria-label="Languages" multiple>
+                <mat-button-toggle *ngFor="let language of languages" [value]="language"><i
+                    class="{{language.icon}}"></i> {{language.name}}
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+              <mat-error *ngIf="userBasicProfile.get('languages')?.hasError('required')">
+                Language is required!
+              </mat-error>
+            </div>
+          </div> -->
+
           <div class="row actions">
             <div class="col-12">
-              <button class="btn btn-primary w-100" (click)="updateProfile()"
-                [disabled]="!userBasicProfile.valid">Update profile</button>
-              <!-- <button class="btn btn-sm btn-secondary w-100" [routerLink]="['/register']">Register</button> -->
+              <button class="btn btn-primary w-100" (click)="updateProfile()" [disabled]="!userBasicProfile.valid">Save
+                personalization</button>
             </div>
           </div>
         </form>
