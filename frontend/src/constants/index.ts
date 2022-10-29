@@ -6,3 +6,5 @@ export const POST = 'POST';
 export const DELETE = 'DELETE';
 export const PUT = 'PUT';
 export const PATCH = 'PATCH';
+
+export const EXPERIENCES: Array<string> = ["BEGINNER", "JUNIOR", "MEDIOR", "SENIOR"];

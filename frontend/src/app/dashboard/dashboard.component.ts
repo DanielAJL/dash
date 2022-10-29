@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { CreateUserDTO } from '../DTO/CreateUserDTO';
 import { UserDTO } from '../DTO/UserDTO';
 import { SharedDataService } from '../services/shared-data.service';
 import { UsersService } from '../services/users.service';
+import { EXPERIENCES } from '../../constants';
 
 @Component({
   selector: 'dashboard',
@@ -13,6 +13,7 @@ import { UsersService } from '../services/users.service';
 export class DashboardComponent implements OnInit {
   user!: UserDTO;
   userBasicProfile: FormGroup;
+  EXPERIENCES = EXPERIENCES;
 
   constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService) {
     this.userBasicProfile = this.formBuilder.group({

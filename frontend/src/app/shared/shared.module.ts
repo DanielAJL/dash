@@ -20,6 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [],
   imports: [
@@ -39,6 +40,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatTabsModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatListModule,
   ],
   exports: [
     CommonModule,
@@ -57,6 +59,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatTabsModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatListModule,
   ],
 })
 export class SharedModule { }
