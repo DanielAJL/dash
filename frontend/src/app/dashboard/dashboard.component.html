@@ -2,10 +2,10 @@
   <mat-card>
     <div class="row">
       <div class="col-12">
-        <h1>Welcome</h1>
+        <h1>Welcome <span class="user-name" *ngIf="user.name">{{ user.name }}</span></h1>
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="!user.name">
       <div class="col-12">
         <form id="loginForm" [formGroup]="userBasicProfile">
           <div class="row">
