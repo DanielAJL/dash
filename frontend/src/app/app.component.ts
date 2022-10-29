@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
           if (res) {
             this.user = res as unknown as UserDTO;
             this.isLoggedIn = true;
-            // TODO set user data here for sharing (BehaviourSubject?):
+            // Set user observable to the user response (BehaviourSubject):
             this.sharedDataService.setUserObs(this.user);
           } else {
             this.isLoggedIn = false;
