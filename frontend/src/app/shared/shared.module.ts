@@ -22,6 +22,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [],
@@ -44,6 +45,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatSelectModule,
     MatListModule,
     MatButtonToggleModule,
+    MatChipsModule,
   ],
   exports: [
     CommonModule,
@@ -64,6 +66,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatSelectModule,
     MatListModule,
     MatButtonToggleModule,
+    MatChipsModule,
   ],
 })
 export class SharedModule { }

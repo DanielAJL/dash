@@ -1,18 +1,18 @@
 <div class="container">
-  <mat-card>
-    <div class="row">
-      <div class="col-12">
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
         <h1>Welcome<span class="user-name" *ngIf="user?.name"> {{ user.name }}</span></h1>
-      </div>
+      </mat-card>
     </div>
-  </mat-card>
+  </div>
 </div>
 
 <div class="container" *ngIf="!user?.name">
-  <mat-card>
 
-    <div class="row">
-      <div class="col-12">
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
         <form id="loginForm" [formGroup]="userBasicProfile">
           <div class="row">
             <div class="col-12">
@@ -60,19 +60,6 @@
             </div>
           </div>
 
-          <!-- <div class="row">
-            <div class="col-12">
-              <mat-button-toggle-group name="languages" formControlName="languages" aria-label="Languages" multiple>
-                <mat-button-toggle *ngFor="let language of languages" [value]="language"><i
-                    class="{{language.icon}}"></i> {{language.name}}
-                </mat-button-toggle>
-              </mat-button-toggle-group>
-              <mat-error *ngIf="userBasicProfile.get('languages')?.hasError('required')">
-                Language is required!
-              </mat-error>
-            </div>
-          </div> -->
-
           <div class="row actions">
             <div class="col-12">
               <button class="btn btn-primary w-100" (click)="updateProfile()" [disabled]="!userBasicProfile.valid">Save
@@ -80,7 +67,44 @@
             </div>
           </div>
         </form>
-      </div>
+      </mat-card>
     </div>
-  </mat-card>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <mat-card>
+        <h2>My repositories:</h2>
+
+      </mat-card>
+    </div>
+    <div class="col-4">
+      <mat-card>
+        <h2>My languages:</h2>
+        <mat-chip-list aria-label="Dog selection">
+          <mat-chip *ngFor="let language of user.languages">
+            <i class="{{language.icon}}"></i>
+            {{language.name}}
+          </mat-chip>
+        </mat-chip-list>
+
+      </mat-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <mat-card>
+        <h2>My friends:</h2>
+
+      </mat-card>
+    </div>
+    <div class="col-4">
+      <mat-card>
+        <h2>My experience:</h2>
+        <h2>{{user.experienceLevel}}</h2>
+      </mat-card>
+    </div>
+  </div>
 </div>

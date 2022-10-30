@@ -15,35 +15,35 @@ mat-form-field.mat-form-field {
   width: 100%;
 }
 
-mat-chip.mat-chip {
-  &.mat-standard-chip {
-    color: #fff;
-    font-size: 12px;
-    min-height: 25px;
-    opacity: 0.45;
+// mat-chip.mat-chip {
+//   &.mat-standard-chip {
+//     color: #fff;
+//     font-size: 12px;
+//     min-height: 25px;
+//     opacity: 0.45;
 
-    &:focus::after {
-      opacity: 0;
-    }
-  }
+//     &:focus::after {
+//       opacity: 0;
+//     }
+//   }
 
 
-  &.delete {
-    background-color: #ff2400;
-  }
+//   &.delete {
+//     background-color: #ff2400;
+//   }
 
-  &.create {
-    background-color: #00cc03;
-  }
+//   &.create {
+//     background-color: #00cc03;
+//   }
 
-  &.update {
-    background-color: #006aec;
-  }
+//   &.update {
+//     background-color: #006aec;
+//   }
 
-  &.active {
-    opacity: 1;
-  }
-}
+//   &.active {
+//     opacity: 1;
+//   }
+// }
 
 mat-card.mat-card .row:not(:first-of-type), table.mat-table .row:not(:first-of-type), .table .row:not(:first-of-type), table .row:not(:first-of-type) {
   margin-top: 10px;
