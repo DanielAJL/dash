@@ -37,18 +37,7 @@ class UserService {
   public async updateUser(userId: string, userData: UserDTO): Promise<User> {
     if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');
 
-    if (userData.email) {
-      const findUser: User = await this.users.findOne({ email: userData.email });
-      if (findUser && findUser._id != userId) throw new HttpException(409, `This email ${userData.email} already exists`);
-    }
-
-    // if (userData.password) {
-    //   const hashedPassword = await hash(userData.password, 10);
-    //   userData = { ...userData, password: hashedPassword };
-    // }
-
     const updateUserById: User = await this.users.findByIdAndUpdate(userId, userData, { returnDocument: 'after' });
-    console.log(updateUserById); // DOES NOT HAVE THE `name` property.
 
     if (!updateUserById) throw new HttpException(409, "User doesn't exist");
 
