@@ -37,6 +37,7 @@
 
           <div class="row">
             <div class="col-4">
+              <mat-label class="d-block">What do you consider yourself?</mat-label>
               <mat-selection-list #list formControlName="experienceLevel" [multiple]="false">
                 <mat-list-option *ngFor="let exp of experiences" [value]="exp">
                   {{exp}}
@@ -47,6 +48,7 @@
               </mat-error>
             </div>
             <div class="col-8">
+              <mat-label class="d-block">What languages (or frameworks, tools, DB's) do you use?</mat-label>
               <mat-button-toggle-group name="languages" formControlName="languages" aria-label="Languages" multiple>
                 <mat-button-toggle class="language" *ngFor="let language of languages" [value]="language"><i
                     class="{{language.icon}}"></i> {{language.name}}
