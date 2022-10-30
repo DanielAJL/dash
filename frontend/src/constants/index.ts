@@ -46,4 +46,5 @@ export const LANGUAGES: Array<LanguageDTO> = [
     area: "Back-end",
     icon: "devicon-python-plain colored",
   },
+
 ];

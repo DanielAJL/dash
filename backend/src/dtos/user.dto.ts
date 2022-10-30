@@ -9,9 +9,6 @@ export class CreateUserDTO {
 
   @IsString()
   public password: string;
-
-  // @IsString()
-  // public name?: string;
 }
 
 export class UserDTO {

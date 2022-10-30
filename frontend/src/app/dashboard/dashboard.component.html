@@ -36,7 +36,7 @@
           </div>
 
           <div class="row">
-            <div class="col-6">
+            <div class="col-4">
               <mat-selection-list #list formControlName="experienceLevel" [multiple]="false">
                 <mat-list-option *ngFor="let exp of experiences" [value]="exp">
                   {{exp}}
@@ -46,9 +46,9 @@
                 Experience level is required!
               </mat-error>
             </div>
-            <div class="col-6">
+            <div class="col-8">
               <mat-button-toggle-group name="languages" formControlName="languages" aria-label="Languages" multiple>
-                <mat-button-toggle *ngFor="let language of languages" [value]="language"><i
+                <mat-button-toggle class="language" *ngFor="let language of languages" [value]="language"><i
                     class="{{language.icon}}"></i> {{language.name}}
                 </mat-button-toggle>
               </mat-button-toggle-group>

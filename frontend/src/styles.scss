@@ -23,6 +23,62 @@ login, register {
   }
 }
 
+/************************* Dashboard ***************************
+***************************************************************/
+dashboard {
+
+  .mat-list-base {
+    padding-top: 0;
+
+    .mat-list-item {
+      border: 1px solid #ccc;
+      margin: 8px 4px;
+
+      &:not(first-of-type) {
+        margin-top: 0;
+      }
+    }
+  }
+  .mat-list-base .mat-list-item, .mat-list-base .mat-list-option { height: 45px !important;}
+
+  .mat-button-toggle-standalone, .mat-button-toggle-group {
+    display: initial;
+    border: 0;
+
+    .mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
+      border-left: 1px solid #ccc;
+    }
+
+
+    .mat-button-toggle-label-content {
+      width: 100%;
+      position: relative;
+      height: 45px;
+
+      i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 30px;
+      }
+    }
+
+    .language {
+      width: calc(100% / 4 - 8px);
+      height: 45px;
+      float: left;
+      border: 1px solid #ccc;
+      margin: 4px 4px;
+
+      &:nth-of-type(-n+4) {
+        margin-top: 0;
+      }
+    }
+
+  }
+}
+
 /********************* B O O T S T R A P ***********************
 ***************************************************************/
 button.btn {
