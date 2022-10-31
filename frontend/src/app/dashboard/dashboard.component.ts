@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { UserDTO } from '../DTO/UserDTO';
+import { NetworkDTO } from '../DTO/NetworkDTO';
 import { SharedDataService } from '../services/shared-data.service';
 import { UsersService } from '../services/users.service';
 import { EXPERIENCES, LANGUAGES } from '../../constants';
-import { LanguageDTO } from '../DTO/LanguageDTO';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'dashboard',
@@ -16,6 +18,17 @@ export class DashboardComponent implements OnInit {
   userBasicProfile: FormGroup;
   experiences = EXPERIENCES;
   languages = LANGUAGES;
+  userNetworkDatasource: MatTableDataSource<NetworkDTO> = new MatTableDataSource();
+  displayedColumns: Array<string> = [
+    '#',
+    'name',
+    'category',
+    'experienceLevel'
+  ];
+
+  @ViewChild(MatPaginator) set paginator(value: MatPaginator) {
+    this.userNetworkDatasource.paginator = value;
+  }
 
   constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService) {
     this.userBasicProfile = this.formBuilder.group({
@@ -41,6 +54,7 @@ export class DashboardComponent implements OnInit {
     this.sharedDataService.getUserObs().subscribe(user => {
       if (user) {
         this.user = user;
+        this.userNetworkDatasource.data = this.user.network;
       }
       // user is null here:
     });
