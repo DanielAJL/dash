@@ -73,38 +73,52 @@
 </div>
 
 <div class="container">
+
   <div class="row">
     <div class="col-8">
       <mat-card>
-        <h2>My repositories:</h2>
-
+        <h2>My favourite projects:</h2>
       </mat-card>
     </div>
     <div class="col-4">
       <mat-card>
         <h2>My languages:</h2>
         <mat-chip-list aria-label="Dog selection">
-          <mat-chip *ngFor="let language of user.languages">
+          <mat-chip *ngFor="let language of user?.languages">
             <i class="{{language.icon}}"></i>
             {{language.name}}
           </mat-chip>
         </mat-chip-list>
-
       </mat-card>
     </div>
   </div>
+
   <div class="row">
     <div class="col-8">
       <mat-card>
-        <h2>My friends:</h2>
-
+        <div class="row">
+          <div [ngClass]="user?.network.length ? 'col-12' : 'col-8'">
+            <h2>My network ({{user?.network.length}}):</h2>
+          </div>
+          <div class="col-4" *ngIf="!user?.network.length">
+            <button class="btn btn-primary">Visit network page</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="network-user" *ngFor="let networkUser of user?.network">
+              {{networkUser.name}}
+            </div>
+          </div>
+        </div>
       </mat-card>
     </div>
     <div class="col-4">
       <mat-card>
         <h2>My experience:</h2>
-        <h2>{{user.experienceLevel}}</h2>
+        <h3>{{user?.experienceLevel | titlecase }}</h3>
       </mat-card>
     </div>
   </div>
+
 </div>

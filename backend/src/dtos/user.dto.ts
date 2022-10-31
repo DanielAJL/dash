@@ -1,8 +1,6 @@
-import { IsArray, IsEmail, IsNotEmptyObject, IsString } from 'class-validator';
-import { Types } from 'mongoose';
+import { IsArray, IsEmail, IsString } from 'class-validator';
 import { LanguageDTO } from './language.dto';
-// import { LanguageDTO } from '@/DTOs/language.dto';
-// type MyRef<T> = <T & { _id: Types.ObjectId }, Types.ObjectId & { _id: Types.ObjectId }>;
+import { NetworkDTO } from './network.dto';
 export class CreateUserDTO {
   @IsEmail()
   public email: string;
@@ -26,4 +24,7 @@ export class UserDTO {
 
   @IsArray()
   public languages?: Array<LanguageDTO>;
+
+  @IsArray()
+  public network?: Array<NetworkDTO>;
 }
