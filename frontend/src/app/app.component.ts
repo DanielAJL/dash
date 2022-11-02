@@ -4,12 +4,14 @@ import { UserDTO } from './DTO/UserDTO';
 import { AuthService } from './services/auth.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { SharedDataService } from './services/shared-data.service';
+const { version: appVersion } = require('../../package.json')
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  appVersion: string;
   title = 'frontend';
   user!: UserDTO;
   isLoggedIn!: boolean;
@@ -25,12 +27,14 @@ export class AppComponent implements OnInit {
             this.isLoggedIn = true;
             // Set user observable to the user response (BehaviourSubject):
             this.sharedDataService.setUserObs(this.user);
+            this.appVersion = appVersion;
           } else {
             this.isLoggedIn = false;
           }
         });
       }
     });
+
   }
 
   async ngOnInit() {

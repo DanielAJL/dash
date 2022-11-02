@@ -8,11 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RegisterAndLoginModule } from './register-and-login/register-and-login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { UsersModule } from './users/users.module';
 
 // Components
 import { AppComponent } from './app.component';
-// import { RegisterComponent } from './register-and-login/register/register.component';
-// import { LoginComponent } from './register-and-login/login/login.component';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +24,8 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     MatSidenavModule,
     RegisterAndLoginModule,
-    DashboardModule
+    DashboardModule,
+    UsersModule
   ],
   providers: [],
   bootstrap: [AppComponent],
