@@ -13,12 +13,14 @@ import { MatPaginator } from '@angular/material/paginator';
 export class UsersComponent implements OnInit {
   public users: Array<UserDTO>;
   public usersDatasource: MatTableDataSource<UserDTO> = new MatTableDataSource();
-  displayedColumns: Array<string> = [
+  public displayedColumns: Array<string> = [
     '#',
     'name',
     'experienceLevel',
     'actions'
   ];
+
+  public value: string;
   constructor(private usersService: UsersService) { }
 
   @ViewChild(MatPaginator) set paginator(value: MatPaginator) {
