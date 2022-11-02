@@ -25,7 +25,7 @@ export class UsersComponent implements OnInit {
     'actions'
   ];
 
-  public usersTableFilter: FilterOptions = new FilterOptions();
+  public filterOptions: FilterOptions = new FilterOptions();
   constructor(private usersService: UsersService) { }
 
   @ViewChild(MatPaginator) set paginator(value: MatPaginator) {
@@ -46,8 +46,15 @@ export class UsersComponent implements OnInit {
     console.log(userProfile);
   }
 
-  public logger() {
-    console.log(this.usersTableFilter);
+  public filterTheUsersTable() {
+    let filteredUsers: Array<UserDTO> = [];
 
+    this.users.forEach(user => {
+      if (!this.filterOptions.experience || user.experienceLevel.toLowerCase() === this.filterOptions.experience.toLowerCase())
+        filteredUsers.push(user);
+      filteredUsers = filteredUsers.filter(filteredUser => filteredUser.name.toLowerCase().startsWith(this.filterOptions.name.toLowerCase()));
+    })
+
+    this.usersDatasource.data = filteredUsers;
   }
 }

@@ -54,22 +54,22 @@
         <div class="filter-block">
           <mat-form-field class="name-filter" floatLabel="always" appearance="standard">
             <mat-label>Name</mat-label>
-            <input matInput type="text" [(ngModel)]="usersTableFilter.name" (change)="logger()">
-            <button *ngIf="usersTableFilter.name" matSuffix mat-icon-button aria-label="Clear"
-              (click)="usersTableFilter.name = ''">
+            <input matInput type="text" [(ngModel)]="filterOptions.name" (input)="filterTheUsersTable()">
+            <button *ngIf="filterOptions.name" matSuffix mat-icon-button aria-label="Clear"
+              (click)="filterOptions.name = ''; filterTheUsersTable()">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
 
           <mat-form-field class="name-filter" floatLabel="always" appearance="standard">
             <mat-label>Experience</mat-label>
-            <mat-select type="text" [(value)]="usersTableFilter.experience" (selectionChange)="logger()">
-              <mat-option *ngFor="let experience of usersTableFilter.experienceOptions" [value]="experience">
+            <mat-select type="text" [(value)]="filterOptions.experience" (selectionChange)="filterTheUsersTable()">
+              <mat-option *ngFor="let experience of filterOptions.experienceOptions" [value]="experience">
                 {{ experience }}
               </mat-option>
             </mat-select>
-            <button *ngIf="usersTableFilter.experience" matSuffix mat-icon-button aria-label="Clear"
-              (click)="usersTableFilter.experience = ''; $event.stopPropagation()">
+            <button *ngIf="filterOptions.experience" matSuffix mat-icon-button aria-label="Clear"
+              (click)="filterOptions.experience = ''; filterTheUsersTable(); $event.stopPropagation()">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
