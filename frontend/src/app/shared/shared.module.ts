@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -46,6 +47,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatListModule,
     MatButtonToggleModule,
     MatChipsModule,
+    AppRoutingModule,
   ],
   exports: [
     CommonModule,
@@ -67,6 +69,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatListModule,
     MatButtonToggleModule,
     MatChipsModule,
+    AppRoutingModule,
   ],
 })
 export class SharedModule { }
