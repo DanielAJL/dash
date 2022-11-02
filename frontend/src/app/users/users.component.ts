@@ -34,4 +34,8 @@ export class UsersComponent implements OnInit {
     this.usersDatasource.data = this.users;
   }
 
+  public async getUserById(user: UserDTO) {
+    const userProfile = await this.usersService.getUser(user._id);
+    console.log(userProfile);
+  }
 }
