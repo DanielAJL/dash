@@ -17,36 +17,15 @@ export class AppComponent implements OnInit {
   isLoggedIn!: boolean;
 
   constructor(private authService: AuthService, private router: Router, private sharedDataService: SharedDataService) {
-
-    // WRITE AN AUTH GUARD TO REPLACE THIS CODE.
-    this.router.events.forEach(event => {
-      if (event instanceof NavigationEnd) {
-        this.checkUserActiveSession().then((res) => {
-          if (res) {
-            this.user = res as unknown as UserDTO;
-            this.isLoggedIn = true;
-            // Set user observable to the user response (BehaviourSubject):
-            this.sharedDataService.setUserObs(this.user);
-            this.appVersion = appVersion;
-          } else {
-            this.isLoggedIn = false;
-          }
-        });
-      }
-    });
-
+    this.appVersion = appVersion;
   }
 
   async ngOnInit() {
     this.sharedDataService.getUserObs().subscribe(user => {
       this.user = user;
+      if (this.user)
+        this.isLoggedIn = true;
     });
-  }
-
-  async checkUserActiveSession(): Promise<boolean> {
-    this.isLoggedIn = await this.authService.getCurrentSession();
-    return this.isLoggedIn;
-
   }
 
   async logout() {

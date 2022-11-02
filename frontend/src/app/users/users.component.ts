@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
 
   public async getUserById(user: UserDTO) {
     const userProfile = await this.usersService.getUser(user._id);
-    console.log(userProfile);
+    // console.log(userProfile);
   }
 
   public filterTheUsersTable() {
