@@ -34,9 +34,8 @@
             <th mat-header-cell *matHeaderCellDef> Actions </th>
             <td mat-cell *matCellDef="let user">
               <div class="btn-group">
-                <button class="btn btn-sm btn-info" [routerLink]="['/users']" [queryParams]="{id: user._id}"
-                  routerLinkActive="router-link-active" (click)="getUserById(user)"><i
-                    class="fa-solid fa-user"></i></button>
+                <a class="btn btn-sm btn-primary" [routerLink]="'profile'" [queryParams]="{id: user._id}"
+                  routerLinkActive="router-link-active"><i class="fa-solid fa-user"></i></a>
                 <button class="btn btn-sm btn-secondary"><i class="fa-solid fa-handshake"></i></button>
               </div>
             </td>

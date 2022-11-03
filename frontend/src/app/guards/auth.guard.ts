@@ -23,4 +23,17 @@ export class AuthGuard implements CanActivate {
       return false;
     }
   }
+
+  async canActivateChild(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Promise<boolean> {
+    const isLoggedIn = await this.authService.getCurrentSession();
+    if (isLoggedIn) {
+      this.sharedDataService.setUserObs(isLoggedIn);
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
 }

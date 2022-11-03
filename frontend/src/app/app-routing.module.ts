@@ -23,9 +23,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [RedirectGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   {
-    path: 'users', canActivate: [AuthGuard],
+    path: 'users', canActivate: [AuthGuard], canActivateChild: [AuthGuard],
     children: [
-      { path: ':id', component: SingleUserComponent },
+      { path: 'profile', component: SingleUserComponent },
       { path: '', pathMatch: 'full', component: UsersComponent },
     ],
   },

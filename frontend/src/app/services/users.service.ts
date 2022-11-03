@@ -17,8 +17,16 @@ export class UsersService {
   }
 
   async getUser(userId: string) {
-    const response = await this.apiService.get(`${this.API_PATH}/${userId}`);
-    return response.data as UserDTO;
+    const response = await this.apiService.get(`${this.API_PATH}/${userId}`).then(res => {
+      if (res)
+        return res.data;
+
+    }).catch((err) => {
+      console.log(err);
+      return err;
+
+    });
+    return response as UserDTO;
   }
 
   async createUser(user: CreateUserDTO) {
