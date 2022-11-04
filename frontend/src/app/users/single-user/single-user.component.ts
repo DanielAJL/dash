@@ -30,6 +30,8 @@ export class SingleUserComponent implements OnInit {
           if (this.userId.match(/^[0-9a-fA-F]{24}$/)) {
             // Yes, it's a valid ObjectId, proceed to `getUserFromQueryParams()`
             this.getUserFromQueryParams();
+            console.log('test');
+
           } else {
             // Not valid ObjectId, so can never exist as id for user.
             this.router.navigate(['404']);
@@ -38,12 +40,7 @@ export class SingleUserComponent implements OnInit {
       }
       );
 
-    this.sharedDataService.getUserObs().subscribe(user => {
-      if (user) {
-        this.authenticatedUser = user;
-      }
-      // user is null here:
-    });
+
   }
 
   async getUserFromQueryParams() {
@@ -51,6 +48,12 @@ export class SingleUserComponent implements OnInit {
     if (!this.user) {
       // User not found, invalid key.
       this.router.navigate(['404']);
+    } else {
+      this.sharedDataService.getUserObs().subscribe(user => {
+        if (user) {
+          this.authenticatedUser = user;
+        }
+      });
     }
   }
 
