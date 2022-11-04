@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserDTO } from 'src/app/DTO/UserDTO';
 import { UsersService } from 'src/app/services/users.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'single-user',
@@ -12,10 +13,12 @@ import { NavigationEnd, Router } from '@angular/router';
 export class SingleUserComponent implements OnInit {
   userId: string;
   user: UserDTO;
+  authenticatedUser: UserDTO;
 
-  constructor(private route: ActivatedRoute, private usersService: UsersService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private usersService: UsersService, private router: Router, private sharedDataService: SharedDataService) { }
 
   ngOnInit(): void {
+
     this.route.queryParams
       .subscribe(params => {
         this.userId = params['id'];
@@ -34,6 +37,13 @@ export class SingleUserComponent implements OnInit {
         }
       }
       );
+
+    this.sharedDataService.getUserObs().subscribe(user => {
+      if (user) {
+        this.authenticatedUser = user;
+      }
+      // user is null here:
+    });
   }
 
   async getUserFromQueryParams() {
@@ -42,6 +52,10 @@ export class SingleUserComponent implements OnInit {
       // User not found, invalid key.
       this.router.navigate(['404']);
     }
+  }
+
+  async addUserToNetwork() {
+
   }
 
 }

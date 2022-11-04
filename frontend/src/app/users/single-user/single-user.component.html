@@ -1,2 +1,56 @@
-<p *ngIf="user">user {{user.name}} found!</p>
-<p *ngIf="!user">user not found!</p>
+<div class="container" *ngIf="!user">
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
+        <h1>Loading user profile ..</h1>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="user">
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
+        <h1>User: {{user.name}}</h1>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container" *ngIf="user">
+  <div class="row">
+    <div class="col-9">
+      <mat-card>
+        <h1>PROFILE PT 2</h1>
+        <div class="row">
+          <div class="col-3">
+            CHAPTER 1
+          </div>
+          <div class="col-9">
+            CHAPTER 2
+          </div>
+        </div>
+      </mat-card>
+
+    </div>
+    <div class="col-3">
+      <mat-card>
+        <h1>Actions</h1>
+        <div class="row">
+          <div class="col-12">
+            <div class="action-1">
+              <button class="btn btn-info" (click)="addUserToNetwork()">Add to network!</button>
+            </div>
+            <!-- <div class="action-2">
+              <button class="btn btn-info">Add to network!</button>
+            </div> -->
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
