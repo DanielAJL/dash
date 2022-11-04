@@ -12,10 +12,11 @@ import { UsersModule } from './users/users.module';
 
 // Components
 import { AppComponent } from './app.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     CommonModule,

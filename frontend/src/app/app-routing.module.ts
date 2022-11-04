@@ -7,6 +7,7 @@ import { LoginComponent } from './register-and-login/login/login.component';
 import { RegisterComponent } from './register-and-login/register/register.component';
 import { UsersComponent } from './users/users.component';
 import { SingleUserComponent } from './users/single-user/single-user.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: '*',
     component: LoginComponent,
+  },
+  {
+    path: '404',
+    component: PageNotFoundComponent,
+    canActivate: [AuthGuard],
   },
 
   { path: 'login', component: LoginComponent, canActivate: [RedirectGuard] },

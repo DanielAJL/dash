@@ -23,6 +23,8 @@ class UsersController {
 
       res.status(200).json({ data: findOneUserData, message: 'findOne' });
     } catch (error) {
+      // res.status(409).json({ message: `Could not find user with id: [${req.params.id}]` });
+
       next(error);
     }
   };
