@@ -7,18 +7,27 @@ import {
   UrlTree
 } from "@angular/router";
 import { AuthService } from "../services/auth.service";
+import { SharedDataService } from "../services/shared-data.service";
 @Injectable()
 export class RedirectGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) { };
+  isActiveSession: any;
+  constructor(private authService: AuthService, private router: Router, private sharedDataService: SharedDataService) {
+    this.sharedDataService.getUserObs().subscribe(res => {
+      this.isActiveSession = res;
+    })
+  };
   async canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<boolean> {
-    const isLoggedIn = await this.authService.getCurrentSession();
-    if (isLoggedIn) {
-      this.router.navigate(['/dashboard']);
-      return false;
-    } else {
-      return true;
+    if (!this.isActiveSession) {
+      const isLoggedIn = await this.authService.getCurrentSession();
+      if (isLoggedIn) {
+        this.router.navigate(['/dashboard']);
+        return false;
+      } else {
+        return true;
+      }
     }
+    return this.isActiveSession;
   }
 }
