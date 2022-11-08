@@ -1,50 +1,10 @@
 [{
   "_id": {
-    "$oid": "635ef6061093087d7378700c"
-  },
-  "email": "admin@gmail.com",
-  "password": "$2b$10$CmRhcGLMUWEVJ0xRmUGRp.7RfLcID4PfAuJrcaC5jtKRd/knhgYou",
-  "languages": [
-    {
-      "name": "JavaScript",
-      "isFramework": false,
-      "isDatabase": false,
-      "area": "Front-end",
-      "icon": "devicon-javascript-plain colored"
-    }
-  ],
-  "__v": 0,
-  "experienceLevel": "BEGINNER",
-  "name": "Admin",
-  "network": [
-    {
-      "userId": "635ef5811093087d73787001",
-      "category": "FRONTEND",
-      "experienceLevel": "MEDIOR",
-      "name": "Tester123"
-    }
-  ]
-},{
-  "_id": {
-    "$oid": "635ef5811093087d73787001"
+    "$oid": "636acf77378903f78b388339"
   },
   "email": "tester123@test.com",
-  "password": "$2b$10$LwMYpyeXX7Sskb8vT/o5aOSwj7ULhb5IVfTF7dcZA7SK5Pi4M8tWG",
+  "password": "$2b$10$Unc8/WQzgBHYtXGYejfF/OWcB/c.PQ4SGth7xYw7MqpatU3RxthG6",
   "languages": [
-    {
-      "name": "C#",
-      "isFramework": false,
-      "isDatabase": false,
-      "area": "Back-end",
-      "icon": "devicon-csharp-plain colored"
-    },
-    {
-      "name": "C",
-      "isFramework": false,
-      "isDatabase": false,
-      "area": "Back-end",
-      "icon": "devicon-c-plain colored"
-    },
     {
       "name": "TypeScript",
       "isFramework": false,
@@ -58,7 +18,64 @@
       "isDatabase": false,
       "area": "Front-end",
       "icon": "devicon-javascript-plain colored"
+    }
+  ],
+  "__v": 0,
+  "experienceLevel": "JUNIOR",
+  "name": "Tester123"
+},{
+  "_id": {
+    "$oid": "636acf7d378903f78b38833c"
+  },
+  "email": "admin@test.com",
+  "password": "$2b$10$zt0rmp3yQDvec/1e5KeXOuC.f/4vENwJ4Jo/hekqPvhF9hya.89Ma",
+  "languages": [
+    {
+      "name": "Python",
+      "isFramework": false,
+      "isDatabase": false,
+      "area": "Back-end",
+      "icon": "devicon-python-plain colored"
     },
+    {
+      "name": "JavaScript",
+      "isFramework": false,
+      "isDatabase": false,
+      "area": "Front-end",
+      "icon": "devicon-javascript-plain colored"
+    },
+    {
+      "name": "TypeScript",
+      "isFramework": false,
+      "isDatabase": false,
+      "area": "Front-end",
+      "icon": "devicon-typescript-plain colored"
+    },
+    {
+      "name": "C",
+      "isFramework": false,
+      "isDatabase": false,
+      "area": "Back-end",
+      "icon": "devicon-c-plain colored"
+    },
+    {
+      "name": "C#",
+      "isFramework": false,
+      "isDatabase": false,
+      "area": "Back-end",
+      "icon": "devicon-csharp-plain colored"
+    }
+  ],
+  "__v": 0,
+  "experienceLevel": "SENIOR",
+  "name": "Admin"
+},{
+  "_id": {
+    "$oid": "636acf83378903f78b38833f"
+  },
+  "email": "testing@test.com",
+  "password": "$2b$10$DTYTHeO6VHYeHeXqBihGQubZCOAD7G2qdI1QJAZ6Prrenr/kzwGRW",
+  "languages": [
     {
       "name": "Python",
       "isFramework": false,
@@ -67,15 +84,63 @@
       "icon": "devicon-python-plain colored"
     }
   ],
-  "network": [
+  "__v": 0,
+  "experienceLevel": "MEDIOR",
+  "name": "Testing123"
+},{
+  "_id": {
+    "$oid": "636acf8c378903f78b388342"
+  },
+  "email": "hank18@test.com",
+  "password": "$2b$10$6GlWUbKHQKK24x.z3kFPp.C62zP/QRCNqCpS5JXFGtHRmWJIkZVwG",
+  "languages": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "636acf91378903f78b388345"
+  },
+  "email": "harryk@test.com",
+  "password": "$2b$10$Diz65zN4r9mNfxuogY145ejb4nNS27da/t843Rw1pUL0svBm6qpNG",
+  "languages": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "636acf99378903f78b388348"
+  },
+  "email": "kwfinuto@test.com",
+  "password": "$2b$10$BqNoHK2fCauSeK2kaTgz6OAdaELfpAkQcjO/4lpvjuccinPeXlwey",
+  "languages": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "636ad88389ca3188cf76a1ca"
+  },
+  "email": "hello11@test.com",
+  "password": "$2b$10$8tlhuoNMzphLzyA9iUdlFe1sKS3tGzjg85ehHNf9G1M6JFBae6tSC",
+  "languages": [
     {
-      "userId": "635ef6061093087d7378700c",
-      "category": "BACKEND",
-      "experienceLevel": "BEGINNER",
-      "name": "Admin"
+      "name": "C#",
+      "isFramework": false,
+      "isDatabase": false,
+      "area": "Back-end",
+      "icon": "devicon-csharp-plain colored"
+    },
+    {
+      "name": "JavaScript",
+      "isFramework": false,
+      "isDatabase": false,
+      "area": "Front-end",
+      "icon": "devicon-javascript-plain colored"
+    },
+    {
+      "name": "TypeScript",
+      "isFramework": false,
+      "isDatabase": false,
+      "area": "Front-end",
+      "icon": "devicon-typescript-plain colored"
     }
   ],
   "__v": 0,
   "experienceLevel": "MEDIOR",
-  "name": "Tester123"
+  "name": "Hello11"
 }]
