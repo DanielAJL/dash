@@ -1,7 +1,6 @@
 import { model, Schema, Document } from 'mongoose';
 import { User } from '@interfaces/users.interface';
 import { LanguageDTO } from '@/DTOs/language.dto';
-import { NetworkDTO } from '@/DTOs/network.dto';
 
 const userSchema: Schema = new Schema({
   email: {
@@ -23,10 +22,6 @@ const userSchema: Schema = new Schema({
   },
   languages: {
     type: Array<LanguageDTO>,
-    required: false,
-  },
-  network: {
-    type: Array<NetworkDTO>,
     required: false,
   },
 });

@@ -56,10 +56,4 @@ export class SingleUserComponent implements OnInit {
     }
   }
 
-  async addUserToNetwork() {
-    this.authenticatedUser.network.push(this.user);
-    this.authenticatedUser = await this.usersService.updateUser(this.authenticatedUser._id, this.authenticatedUser);
-
-  }
-
 }

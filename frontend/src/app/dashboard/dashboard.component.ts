@@ -18,17 +18,17 @@ export class DashboardComponent implements OnInit {
   userBasicProfile: FormGroup;
   experiences = EXPERIENCES;
   languages = LANGUAGES;
-  userNetworkDatasource: MatTableDataSource<NetworkDTO> = new MatTableDataSource();
-  displayedColumns: Array<string> = [
-    '#',
-    'name',
-    'category',
-    'experienceLevel'
-  ];
+  // userNetworkDatasource: MatTableDataSource<NetworkDTO> = new MatTableDataSource();
+  // displayedColumns: Array<string> = [
+  //   '#',
+  //   'name',
+  //   'category',
+  //   'experienceLevel'
+  // ];
 
-  @ViewChild(MatPaginator) set paginator(value: MatPaginator) {
-    this.userNetworkDatasource.paginator = value;
-  }
+  // @ViewChild(MatPaginator) set paginator(value: MatPaginator) {
+  //   this.userNetworkDatasource.paginator = value;
+  // }
 
   constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService) {
     this.userBasicProfile = this.formBuilder.group({
@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
     this.sharedDataService.getUserObs().subscribe(user => {
       if (user) {
         this.user = user;
-        this.userNetworkDatasource.data = this.user.network;
+        // this.userNetworkDatasource.data = this.user.network;
       }
       // user is null here:
     });

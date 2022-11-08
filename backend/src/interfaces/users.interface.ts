@@ -1,5 +1,4 @@
 import { LanguageDTO } from '@/DTOs/language.dto';
-import { NetworkDTO } from '@/DTOs/network.dto';
 
 export interface User {
   _id: string;
@@ -8,5 +7,4 @@ export interface User {
   name: string;
   experienceLevel: string;
   languages: Array<LanguageDTO>;
-  network: Array<NetworkDTO>;
 }

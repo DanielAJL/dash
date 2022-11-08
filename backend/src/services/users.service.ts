@@ -8,11 +8,13 @@ import { isEmpty } from '@utils/util';
 class UserService {
   public users = userModel;
 
+  // Query all users that where 'name' field exists and value is not null or an empty string.
   public async findAllUser(): Promise<User[]> {
-    const users: User[] = await this.users.find();
+    const users: User[] = await this.users.find().where({ name: { $exists: true, $nin: [null, ''] } });
     return users;
   }
 
+  // Query ONE user by uid/userId/_id.
   public async findUserById(userId: string): Promise<User> {
     if (isEmpty(userId)) throw new HttpException(400, 'UserId is empty');
 
@@ -24,6 +26,7 @@ class UserService {
     return user;
   }
 
+  // CREATE a new user as CreateUserDTO (only email & password).
   public async createUser(userData: CreateUserDTO): Promise<User> {
     if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');
 
@@ -36,6 +39,7 @@ class UserService {
     return createUserData;
   }
 
+  // UPDATE a new user as UserDTO (as per UserDTO props).
   public async updateUser(userId: string, userData: UserDTO): Promise<User> {
     if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');
 
