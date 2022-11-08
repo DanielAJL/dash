@@ -71,9 +71,6 @@ export class DashboardComponent implements OnInit {
     this.user.name = this.userBasicProfile.get('name')?.value;
     this.user.experienceLevel = this.userBasicProfile.get('experienceLevel')?.value[0];
     this.user.languages = this.userBasicProfile.get('languages')?.value;
-    console.log(this.user);
-
-
     this.usersService.updateUser(this.user._id!, this.user);
   }
   onNgModelChange(event: Event) {
