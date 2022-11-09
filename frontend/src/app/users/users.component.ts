@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { EXPERIENCES } from '../../constants';
 import { SharedDataService } from '../services/shared-data.service';
+import { INVITATION_STATUS } from '../../constants';
 class FilterOptions {
   name: string | null = '';
   experience: string | null = null;
@@ -62,5 +63,10 @@ export class UsersComponent implements OnInit {
     })
 
     this.usersDatasource.data = filteredUsers;
+  }
+
+  public sendUserInvitation(userId) {
+    console.log(userId);
+
   }
 }

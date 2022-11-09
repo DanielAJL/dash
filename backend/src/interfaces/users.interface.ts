@@ -1,5 +1,4 @@
 import { LanguageDTO } from '@/DTOs/language.dto';
-
 export interface User {
   _id: string;
   email: string;

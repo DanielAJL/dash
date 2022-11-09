@@ -9,6 +9,12 @@ export const DELETE = 'DELETE';
 export const PUT = 'PUT';
 export const PATCH = 'PATCH';
 
+export class INVITATION_STATUS {
+  pending: 'pending';
+  accepted: 'accepted';
+  denied: 'denied';
+};
+
 export const EXPERIENCES: Array<string> = ["BEGINNER", "JUNIOR", "MEDIOR", "SENIOR"];
 export const LANGUAGES: Array<LanguageDTO> = [
   {
