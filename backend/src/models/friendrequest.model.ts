@@ -6,12 +6,12 @@ const friendRequestSchema: Schema = new Schema({
   to: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
   },
   from: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
   },
   message: {
     type: String,
@@ -24,6 +24,6 @@ const friendRequestSchema: Schema = new Schema({
   },
 });
 
+friendRequestSchema.index({ to: 1, from: 1 }, { unique: true, sparse: true });
 const friendRequestModel = model<FriendRequestInterface & Document>('FriendRequest', friendRequestSchema);
-
 export default friendRequestModel;

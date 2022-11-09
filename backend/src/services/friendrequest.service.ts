@@ -13,6 +13,7 @@ class FriendRequestService {
     const friendRequest: FriendRequestInterface = await this.friendRequests.findOne({ to: friendRequestData.to });
     // if(friendRequest)
     // found one already ..
+
     const friendRequestCreated: FriendRequestInterface = await this.friendRequests.create(friendRequestData);
 
     return friendRequestCreated;
