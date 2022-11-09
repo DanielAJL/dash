@@ -67,8 +67,7 @@ export class UsersComponent implements OnInit {
   }
 
   public async sendUserInvitation(userId) {
-    const friendRequest = await this.friendRequestService.sendFriendRequest(this.authUser._id, userId, "pls accept!");
+    const friendRequest = await this.friendRequestService.sendFriendRequest(userId, this.authUser._id, "pls accept!");
     console.log(friendRequest);
-
   }
 }
