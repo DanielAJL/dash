@@ -7,4 +7,5 @@ export class UserDTO {
   name?: string;
   experienceLevel?: string;
   languages?: Array<LanguageDTO>;
+  online?: boolean;
 }

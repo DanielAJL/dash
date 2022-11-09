@@ -24,6 +24,10 @@ const userSchema: Schema = new Schema({
     type: Array<LanguageDTO>,
     required: false,
   },
+  online: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 const userModel = model<User & Document>('User', userSchema);

@@ -1,4 +1,4 @@
-import { IsArray, IsEmail, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsEmail, IsString } from 'class-validator';
 import { LanguageDTO } from './language.dto';
 
 export class CreateUserDTO {
@@ -24,4 +24,7 @@ export class UserDTO {
 
   @IsArray()
   public languages?: Array<LanguageDTO>;
+
+  @IsBoolean()
+  public online?: boolean;
 }

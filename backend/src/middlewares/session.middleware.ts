@@ -21,7 +21,6 @@ const sessionMiddleware = async (req: Request, res: Response, next: NextFunction
       } else {
         req.body = false;
         next();
-
         // next(new HttpException(401, 'Wrong authentication token'));
       }
     } else {

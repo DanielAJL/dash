@@ -7,4 +7,5 @@ export interface User {
   name: string;
   experienceLevel: string;
   languages: Array<LanguageDTO>;
+  online: boolean;
 }

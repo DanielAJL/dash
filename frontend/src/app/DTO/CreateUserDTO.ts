@@ -4,4 +4,5 @@ export class CreateUserDTO {
   // username?: string;
   password?: string;
   email?: string;
+  online?: boolean;
 }
