@@ -4,6 +4,7 @@ import { UserDTO } from '../DTO/UserDTO';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { EXPERIENCES } from '../../constants';
+import { SharedDataService } from '../services/shared-data.service';
 class FilterOptions {
   name: string | null = '';
   experience: string | null = null;
@@ -17,6 +18,7 @@ class FilterOptions {
 })
 export class UsersComponent implements OnInit {
   public users: Array<UserDTO>;
+  public authUser: UserDTO;
   public usersDatasource: MatTableDataSource<UserDTO> = new MatTableDataSource();
   public displayedColumns: Array<string> = [
     '#',
@@ -26,7 +28,11 @@ export class UsersComponent implements OnInit {
   ];
 
   public filterOptions: FilterOptions = new FilterOptions();
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private sharedDataService: SharedDataService) {
+    this.sharedDataService.getUserObs().subscribe(res => {
+      this.authUser = res;
+    })
+  }
 
   @ViewChild(MatPaginator) set paginator(value: MatPaginator) {
     this.usersDatasource.paginator = value;

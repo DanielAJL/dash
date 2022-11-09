@@ -23,8 +23,8 @@
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Name </th>
             <td mat-cell *matCellDef="let user" class="user-col"><i class="fa-solid fa-circle"
-                [ngClass]="user.online ? 'online' : 'offline'"></i> {{ user.name }}
-            </td>
+                [ngClass]="user.online ? 'online' : 'offline'"></i> {{ user.name }} <span
+                *ngIf="user._id === authUser._id">(You)</span></td>
           </ng-container>
 
           <ng-container matColumnDef="experienceLevel">
