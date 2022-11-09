@@ -9,6 +9,25 @@ import FriendRequestService from '@/services/friendrequest.service';
 class FriendRequestController {
   public friendRequestService = new FriendRequestService();
 
+  public getFriendRequests = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const findAllFriendRequestsData: FriendRequestInterface[] = await this.friendRequestService.findAllFriendRequests();
+      res.status(200).json({ data: findAllFriendRequestsData, message: 'findAll' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public getPendingFriendRequestsById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userId: string = req.params.id;
+      const findPendingFriendRequestsByIdData: FriendRequestInterface[] = await this.friendRequestService.findPendingFriendRequestsById(userId);
+      res.status(200).json({ data: findPendingFriendRequestsByIdData, message: 'find' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   public sendFriendRequest = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const friendRequestData: FriendRequestDTO = req.body;

@@ -7,15 +7,20 @@ import friendRequestModel from '@/models/friendrequest.model';
 class FriendRequestService {
   public friendRequests = friendRequestModel;
 
+  // Query all users that where 'name' field exists and value is not null or an empty string.
+  public async findAllFriendRequests(): Promise<FriendRequestInterface[]> {
+    const friendRequests: FriendRequestInterface[] = await this.friendRequests.find();
+    return friendRequests;
+  }
+
+  public async findPendingFriendRequestsById(userId: string): Promise<FriendRequestInterface[]> {
+    const friendRequestsFound: FriendRequestInterface[] = await this.friendRequests.find({ to: userId, status: 'pending' });
+    return friendRequestsFound;
+  }
+
   public async createFriendRequest(friendRequestData: FriendRequestDTO): Promise<FriendRequestInterface> {
-    // if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');
-
-    const friendRequest: FriendRequestInterface = await this.friendRequests.findOne({ to: friendRequestData.to });
-    // if(friendRequest)
-    // found one already ..
-
+    if (isEmpty(friendRequestData)) throw new HttpException(400, 'friendRequestData is empty');
     const friendRequestCreated: FriendRequestInterface = await this.friendRequests.create(friendRequestData);
-
     return friendRequestCreated;
   }
 }
