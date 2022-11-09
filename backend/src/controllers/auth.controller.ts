@@ -52,8 +52,6 @@ class AuthController {
     try {
       // console.log(req.body);
       res.status(200).json({ data: req.body, message: 'current_user_session' });
-      console.log('XXXXXXXXXXXXXXXXXXXXX', req.body);
-
     } catch (error) {
       next(error);
     }

@@ -63,7 +63,7 @@
             </button>
           </mat-form-field>
 
-          <mat-form-field class="name-filter" floatLabel="always" appearance="standard">
+          <mat-form-field class="experience-filter" floatLabel="always" appearance="standard">
             <mat-label>Experience</mat-label>
             <mat-select type="text" [(value)]="filterOptions.experience" (selectionChange)="filterTheUsersTable()">
               <mat-option *ngFor="let experience of filterOptions.experienceOptions" [value]="experience">
