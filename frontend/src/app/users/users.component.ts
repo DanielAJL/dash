@@ -5,7 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { EXPERIENCES } from '../../constants';
 import { SharedDataService } from '../services/shared-data.service';
-import { INVITATION_STATUS } from '../../constants';
+import { FriendRequestService } from '../services/friendrequest.service';
+
 class FilterOptions {
   name: string | null = '';
   experience: string | null = null;
@@ -29,7 +30,7 @@ export class UsersComponent implements OnInit {
   ];
 
   public filterOptions: FilterOptions = new FilterOptions();
-  constructor(private usersService: UsersService, private sharedDataService: SharedDataService) {
+  constructor(private usersService: UsersService, private sharedDataService: SharedDataService, private friendRequestService: FriendRequestService) {
     this.sharedDataService.getUserObs().subscribe(res => {
       this.authUser = res;
     })
@@ -65,8 +66,9 @@ export class UsersComponent implements OnInit {
     this.usersDatasource.data = filteredUsers;
   }
 
-  public sendUserInvitation(userId) {
-    console.log(userId);
+  public async sendUserInvitation(userId) {
+    const friendRequest = await this.friendRequestService.sendFriendRequest(this.authUser._id, userId, "pls accept!");
+    console.log(friendRequest);
 
   }
 }
