@@ -1,12 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { UserDTO } from '../DTO/UserDTO';
-import { NetworkDTO } from '../DTO/NetworkDTO';
 import { SharedDataService } from '../services/shared-data.service';
 import { UsersService } from '../services/users.service';
 import { EXPERIENCES, LANGUAGES } from '../../constants';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { FriendRequestDTO } from '../DTO/FriendRequestDTO';
+import { FriendRequestService } from '../services/friendrequest.service';
+
+class viewToggleOptions {
+  pendingRequestsView: boolean = false;
+  testView: boolean = false;
+  testViewTwo: boolean = false;
+}
 
 @Component({
   selector: 'dashboard',
@@ -18,19 +23,10 @@ export class DashboardComponent implements OnInit {
   userBasicProfile: FormGroup;
   experiences = EXPERIENCES;
   languages = LANGUAGES;
-  // userNetworkDatasource: MatTableDataSource<NetworkDTO> = new MatTableDataSource();
-  // displayedColumns: Array<string> = [
-  //   '#',
-  //   'name',
-  //   'category',
-  //   'experienceLevel'
-  // ];
+  pendingRequests: Array<FriendRequestDTO>;
+  @Input() toggleView: viewToggleOptions = new viewToggleOptions;
 
-  // @ViewChild(MatPaginator) set paginator(value: MatPaginator) {
-  //   this.userNetworkDatasource.paginator = value;
-  // }
-
-  constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService) {
+  constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService, private friendRequestService: FriendRequestService) {
     this.userBasicProfile = this.formBuilder.group({
       name: [
         null,
@@ -54,17 +50,16 @@ export class DashboardComponent implements OnInit {
     this.sharedDataService.getUserObs().subscribe(user => {
       if (user) {
         this.user = user;
-        // this.userNetworkDatasource.data = this.user.network;
+        this.getFriendRequests();
       }
-      // user is null here:
     });
   }
 
-  private checkIfUserHasProfile() {
-    if (this.user) {
-
-    }
+  private async getFriendRequests() {
+    const friendRequests: Array<FriendRequestDTO> = await this.friendRequestService.getFriendRequestForUser(this.user._id);
+    this.pendingRequests = friendRequests;
   }
+
 
   public async updateProfile() {
     if (this.formHasValidationErrors()) return;
@@ -73,8 +68,15 @@ export class DashboardComponent implements OnInit {
     this.user.languages = this.userBasicProfile.get('languages')?.value;
     this.usersService.updateUser(this.user._id!, this.user);
   }
-  onNgModelChange(event: Event) {
-    console.log('On ngModelChange : ', event);
+
+  public updateViewVariables() {
+    for (const viewVariable in this.toggleView) {
+      if (Object.prototype.hasOwnProperty.call(this.toggleView, viewVariable)) {
+        // const element = this.toggleView[viewVariable];
+        this.toggleView[viewVariable] = false;
+
+      }
+    }
   }
 
   private formHasValidationErrors(): boolean {

@@ -19,14 +19,14 @@ export class FriendRequestService {
   async getFriendRequestForUser(userId: string) {
     const response = await this.apiService.get(`${this.API_PATH}/${userId}`).then(res => {
       if (res)
-        return res.data;
-
+        return res.data as FriendRequestDTO[];
+      return [];
     }).catch((err) => {
       console.log(err);
       return err;
 
     });
-    return response as FriendRequestDTO;
+    return response as FriendRequestDTO[];
   }
 
   async sendFriendRequest(toUserId: string, fromUserId: string, message?: string) {
