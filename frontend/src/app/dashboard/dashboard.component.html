@@ -11,7 +11,7 @@
 <div class="container">
   <div class="row">
     <div class="col-4">
-      <mat-card class="friend-requests"
+      <mat-card class="toggle-block friend-requests"
         (click)="updateViewVariables(); toggleView.pendingRequestsView = !toggleView.pendingRequestsView">
         <div class="block">
           <p>Friend requests:</p>
@@ -22,14 +22,15 @@
       </mat-card>
     </div>
     <div class="col-4">
-      <mat-card class="friendlist" (click)="updateViewVariables(); toggleView.testView = !toggleView.testView">
+      <mat-card class="toggle-block friendlist"
+        (click)="updateViewVariables(); toggleView.testView = !toggleView.testView">
         <div class="block">
           <p>Test:</p>
         </div>
       </mat-card>
     </div>
     <div class="col-4">
-      <mat-card class="friendlist-two"
+      <mat-card class="toggle-block friendlist-two"
         (click)="updateViewVariables(); toggleView.testViewTwo = !toggleView.testViewTwo">
         <div class="block">
           <p>Test 2:</p>
@@ -40,15 +41,28 @@
 </div>
 
 <div class="container" *ngIf="toggleView.pendingRequestsView">
-  <div class="row">
+  <div class="row" *ngFor="let pendingRequest of pendingRequests">
     <div class="col-12">
       <mat-card>
-        <ng-container *ngFor="let pendingRequest of pendingRequests">
-          <p><b>from:</b> {{pendingRequest.from}}</p>
-          <p *ngIf="pendingRequest.message">
-            <b>message:</b>
-            {{pendingRequest.message}}
-          </p>
+        <ng-container>
+          <div class="row">
+            <div class="col-4">
+              <p><b>From userId:</b> {{pendingRequest.from}}</p>
+            </div>
+            <div class="col-5">
+              <p *ngIf="pendingRequest.message">
+                <b>message:</b>
+                {{pendingRequest.message}}
+              </p>
+            </div>
+            <div class="col-3">
+              <div class="actions">
+                <button class="btn btn-primary" *ngIf="pendingRequest.status === 'pending'">Accept</button>
+                <button class="btn btn-secondary" *ngIf="pendingRequest.message">Open message</button>
+              </div>
+            </div>
+          </div>
+
         </ng-container>
       </mat-card>
     </div>
