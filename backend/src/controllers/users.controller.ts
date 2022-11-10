@@ -29,6 +29,19 @@ class UsersController {
     }
   };
 
+  public getUsersByMultipleIds = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userIds: Array<string> = req.body;
+      const matchingUsers: User[] = await this.userService.findUsersByMultipleIds(userIds);
+
+      res.status(200).json({ data: matchingUsers, message: 'findMatchingIds' });
+    } catch (error) {
+      // res.status(409).json({ message: `Could not find user with id: [${req.params.id}]` });
+
+      next(error);
+    }
+  };
+
   public createUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userData: CreateUserDTO = req.body;

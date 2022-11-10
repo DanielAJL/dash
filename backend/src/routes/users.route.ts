@@ -17,6 +17,7 @@ class UsersRoute implements Routes {
     this.router.get(`${this.path}`, this.usersController.getUsers);
     this.router.get(`${this.path}/:id`, this.usersController.getUserById);
     this.router.post(`${this.path}`, validationMiddleware(CreateUserDTO, 'body'), this.usersController.createUser);
+    this.router.post(`${this.path}/friendrequests-pending`, this.usersController.getUsersByMultipleIds);
     this.router.patch(`${this.path}/:id`, validationMiddleware(UserDTO, 'body', false, true, false), this.usersController.updateUser);
     this.router.delete(`${this.path}/:id`, this.usersController.deleteUser);
   }

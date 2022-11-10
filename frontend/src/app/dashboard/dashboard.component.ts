@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   experiences = EXPERIENCES;
   languages = LANGUAGES;
   pendingRequests: Array<FriendRequestDTO>;
+  requestsSentBy: Array<UserDTO>;
   @Input() toggleView: viewToggleOptions = new viewToggleOptions;
 
   constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService, private friendRequestService: FriendRequestService) {
@@ -58,6 +59,11 @@ export class DashboardComponent implements OnInit {
   private async getFriendRequests() {
     const friendRequests: Array<FriendRequestDTO> = await this.friendRequestService.getFriendRequestForUser(this.user._id);
     this.pendingRequests = friendRequests;
+    console.log(friendRequests.map(req => req.from));
+    const usersForRequests = await this.usersService.getUsersByMultipleIds(friendRequests.map(req => req.from));
+    this.requestsSentBy = usersForRequests; // USERS THAT MATCH SENT FROM USERS (SO THE USER SENDING THE INVITE)
+    console.log(this.requestsSentBy);
+
   }
 
 

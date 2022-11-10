@@ -29,6 +29,17 @@ class UserService {
     return user;
   }
 
+  public async findUsersByMultipleIds(userIds: Array<string>): Promise<User[]> {
+    if (isEmpty(userIds)) throw new HttpException(400, 'UserId is empty');
+
+    const users: User[] = await this.users.find({ _id: { $in: userIds } }).select('-password');
+    if (!users) {
+      // throw new HttpException(409, "User doesn't exist");
+    }
+
+    return users;
+  }
+
   // CREATE a new user as CreateUserDTO (only email & password).
   public async createUser(userData: CreateUserDTO): Promise<User> {
     if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');

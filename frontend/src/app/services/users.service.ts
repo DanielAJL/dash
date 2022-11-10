@@ -29,6 +29,19 @@ export class UsersService {
     return response as UserDTO;
   }
 
+  async getUsersByMultipleIds(userIds: Array<string>) {
+    const response = await this.apiService.post(`${this.API_PATH}/friendrequests-pending`, userIds).then(res => {
+      if (res)
+        return res.data;
+
+    }).catch((err) => {
+      console.log(err);
+      return err;
+
+    });
+    return response as UserDTO[];
+  }
+
   async createUser(user: CreateUserDTO) {
     const response = await this.apiService.post(`${this.API_PATH}`, user);
     return response.data as CreateUserDTO;
