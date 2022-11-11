@@ -6,6 +6,8 @@ import { UsersService } from '../services/users.service';
 import { EXPERIENCES, LANGUAGES } from '../../constants';
 import { FriendRequestDTO } from '../DTO/FriendRequestDTO';
 import { FriendRequestService } from '../services/friendrequest.service';
+import { ConfirmDialogComponent } from '../dialogs/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 class viewToggleOptions {
   pendingRequestsView: boolean = false;
@@ -33,7 +35,7 @@ export class DashboardComponent implements OnInit {
 
   @Input() toggleView: viewToggleOptions = new viewToggleOptions;
 
-  constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService, private friendRequestService: FriendRequestService) {
+  constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService, private friendRequestService: FriendRequestService, private dialog: MatDialog) {
     this.userBasicProfile = this.formBuilder.group({
       name: [
         null,
@@ -82,9 +84,24 @@ export class DashboardComponent implements OnInit {
         }
       }
     });
-
   }
 
+  public openDialog(freq: FriendRequestDTO) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.componentInstance.data = freq.message;
+    dialogRef.componentInstance.title = 'Message';
+
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result) {
+        // modal result true (so confirmed action)
+        console.log(result);
+      } else {
+        // modal cancelled
+        console.log('fail: cancelled action');
+      }
+
+    });
+  }
 
   public async updateProfile() {
     if (this.formHasValidationErrors()) return;

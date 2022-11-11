@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RegisterAndLoginModule } from './register-and-login/register-and-login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { DialogsModule } from './dialogs/dialogs.module';
 import { UsersModule } from './users/users.module';
 
 // Components
@@ -26,7 +27,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatSidenavModule,
     RegisterAndLoginModule,
     DashboardModule,
-    UsersModule
+    UsersModule,
+    DialogsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

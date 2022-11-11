@@ -58,7 +58,8 @@
             <div class="col-3">
               <div class="actions">
                 <button class="btn btn-primary" *ngIf="userAndRequest.friendReq.status === 'pending'">Accept</button>
-                <button class="btn btn-secondary" *ngIf="userAndRequest.friendReq.message">Open message</button>
+                <button class="btn btn-secondary" *ngIf="userAndRequest.friendReq.message"
+                  (click)="openDialog(userAndRequest.friendReq)">Open message</button>
               </div>
             </div>
           </div>
