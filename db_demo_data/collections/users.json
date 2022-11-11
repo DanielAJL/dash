@@ -22,7 +22,8 @@
   ],
   "__v": 0,
   "experienceLevel": "JUNIOR",
-  "name": "Tester123"
+  "name": "Tester123",
+  "online": false
 },{
   "_id": {
     "$oid": "636acf7d378903f78b38833c"
@@ -68,7 +69,8 @@
   ],
   "__v": 0,
   "experienceLevel": "SENIOR",
-  "name": "Admin"
+  "name": "Admin",
+  "online": false
 },{
   "_id": {
     "$oid": "636acf83378903f78b38833f"
@@ -86,7 +88,8 @@
   ],
   "__v": 0,
   "experienceLevel": "MEDIOR",
-  "name": "Testing123"
+  "name": "Testing123",
+  "online": true
 },{
   "_id": {
     "$oid": "636acf8c378903f78b388342"
