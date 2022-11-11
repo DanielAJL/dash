@@ -67,6 +67,9 @@ export class DashboardComponent implements OnInit {
       if (requests) {
         const usersForRequests = await this.usersService.getUsersByMultipleIds(requests.map(req => req.from));
 
+        /**
+         * Match the users that sent a request with a specific request using the `from` key that matches their userId
+         */
         for (let i = 0; i < usersForRequests.length; i++) {
           for (let j = 0; j < requests.length; j++) {
             if (usersForRequests[i]._id === requests[j].from) {
@@ -77,11 +80,7 @@ export class DashboardComponent implements OnInit {
             }
           }
         }
-        console.log(this.usersAndRequestData);
-
-
       }
-
     });
 
   }
