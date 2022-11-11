@@ -13,6 +13,12 @@ class viewToggleOptions {
   testViewTwo: boolean = false;
 }
 
+class userAndRequestDataInOne {
+  user: UserDTO;
+  friendReq: FriendRequestDTO;
+};
+
+
 @Component({
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
@@ -23,8 +29,8 @@ export class DashboardComponent implements OnInit {
   userBasicProfile: FormGroup;
   experiences = EXPERIENCES;
   languages = LANGUAGES;
-  pendingRequests: Array<FriendRequestDTO>;
-  usersThatSentFriendRequest: Array<UserDTO>;
+  usersAndRequestData: userAndRequestDataInOne[] = [];
+
   @Input() toggleView: viewToggleOptions = new viewToggleOptions;
 
   constructor(private sharedDataService: SharedDataService, private formBuilder: FormBuilder, private usersService: UsersService, private friendRequestService: FriendRequestService) {
@@ -57,12 +63,22 @@ export class DashboardComponent implements OnInit {
   }
 
   private getFriendRequestsAndUsersThatSentThem() {
-    this.friendRequestService.getFriendRequestForUser(this.user._id).then(async res => {
-      console.log(res);
-      if (res) {
-        this.pendingRequests = res;
-        const usersForRequests = await this.usersService.getUsersByMultipleIds(res.map(req => req.from));
-        this.usersThatSentFriendRequest = usersForRequests; // USERS THAT MATCH SENT FROM USERS (SO THE USER SENDING THE INVITE)
+    this.friendRequestService.getFriendRequestForUser(this.user._id).then(async requests => {
+      if (requests) {
+        const usersForRequests = await this.usersService.getUsersByMultipleIds(requests.map(req => req.from));
+
+        for (let i = 0; i < usersForRequests.length; i++) {
+          for (let j = 0; j < requests.length; j++) {
+            if (usersForRequests[i]._id === requests[j].from) {
+              let data = new userAndRequestDataInOne();
+              data.user = usersForRequests[i];
+              data.friendReq = requests[j];
+              this.usersAndRequestData.push(data);
+            }
+          }
+        }
+        console.log(this.usersAndRequestData);
+
 
       }
 
