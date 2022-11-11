@@ -45,22 +45,28 @@ export class DashboardComponent implements OnInit {
         [Validators.required]
       ],
     });
-  }
-
-  ngOnInit(): void {
     this.sharedDataService.getUserObs().subscribe(user => {
       if (user) {
         this.user = user;
-        this.getFriendRequests();
       }
     });
   }
 
-  private async getFriendRequests() {
-    const friendRequests: Array<FriendRequestDTO> = await this.friendRequestService.getFriendRequestForUser(this.user._id);
-    this.pendingRequests = friendRequests;
-    const usersForRequests = await this.usersService.getUsersByMultipleIds(friendRequests.map(req => req.from));
-    this.usersThatSentFriendRequest = usersForRequests; // USERS THAT MATCH SENT FROM USERS (SO THE USER SENDING THE INVITE)
+  ngOnInit(): void {
+    this.getFriendRequestsAndUsersThatSentThem();
+  }
+
+  private getFriendRequestsAndUsersThatSentThem() {
+    this.friendRequestService.getFriendRequestForUser(this.user._id).then(async res => {
+      console.log(res);
+      if (res) {
+        this.pendingRequests = res;
+        const usersForRequests = await this.usersService.getUsersByMultipleIds(res.map(req => req.from));
+        this.usersThatSentFriendRequest = usersForRequests; // USERS THAT MATCH SENT FROM USERS (SO THE USER SENDING THE INVITE)
+
+      }
+
+    });
 
   }
 
