@@ -61,6 +61,7 @@ export class DashboardComponent implements OnInit {
     this.pendingRequests = friendRequests;
     const usersForRequests = await this.usersService.getUsersByMultipleIds(friendRequests.map(req => req.from));
     this.usersThatSentFriendRequest = usersForRequests; // USERS THAT MATCH SENT FROM USERS (SO THE USER SENDING THE INVITE)
+
   }
 
 
@@ -75,9 +76,7 @@ export class DashboardComponent implements OnInit {
   public updateViewVariables() {
     for (const viewVariable in this.toggleView) {
       if (Object.prototype.hasOwnProperty.call(this.toggleView, viewVariable)) {
-        // const element = this.toggleView[viewVariable];
         this.toggleView[viewVariable] = false;
-
       }
     }
   }
