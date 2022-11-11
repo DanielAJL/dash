@@ -41,24 +41,24 @@
 </div>
 
 <div class="container" *ngIf="toggleView.pendingRequestsView">
-  <div class="row" *ngFor="let pendingRequest of pendingRequests">
+  <div class="row" *ngFor="let user of usersThatSentFriendRequest">
     <div class="col-12">
       <mat-card>
         <ng-container>
           <div class="row">
             <div class="col-4">
-              <p><b>From userId:</b> {{pendingRequest.from}}</p>
+              <p><b>From userId:</b> {{user.name}}</p>
             </div>
             <div class="col-5">
-              <p *ngIf="pendingRequest.message">
-                <b>message:</b>
-                {{pendingRequest.message}}
+              <p *ngIf="user.experienceLevel">
+                <b>experience:</b>
+                {{user.experienceLevel}}
               </p>
             </div>
             <div class="col-3">
               <div class="actions">
-                <button class="btn btn-primary" *ngIf="pendingRequest.status === 'pending'">Accept</button>
-                <button class="btn btn-secondary" *ngIf="pendingRequest.message">Open message</button>
+                <!-- <button class="btn btn-primary" *ngIf="pendingRequest.status === 'pending'">Accept</button>
+                <button class="btn btn-secondary" *ngIf="pendingRequest.message">Open message</button> -->
               </div>
             </div>
           </div>
