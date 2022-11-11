@@ -23,6 +23,14 @@ class FriendRequestService {
     const friendRequestCreated: FriendRequestInterface = await this.friendRequests.create(friendRequestData);
     return friendRequestCreated;
   }
+
+  public async patchFriendRequest(friendRequestData: FriendRequestInterface): Promise<FriendRequestInterface> {
+    if (isEmpty(friendRequestData)) throw new HttpException(400, 'friendRequestData is empty');
+    const friendRequestUpdated: FriendRequestInterface = await this.friendRequests.findByIdAndUpdate(friendRequestData._id, friendRequestData, {
+      returnDocument: 'after',
+    });
+    return friendRequestUpdated;
+  }
 }
 
 export default FriendRequestService;

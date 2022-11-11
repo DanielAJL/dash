@@ -22,7 +22,7 @@ export class UsersService {
         return res.data;
 
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
       return err;
 
     });
@@ -35,7 +35,7 @@ export class UsersService {
         return res.data;
 
     }).catch((err) => {
-      console.log(err);
+      // console.log(err);
       return err;
 
     });

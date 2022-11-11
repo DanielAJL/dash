@@ -40,6 +40,14 @@ export class FriendRequestService {
     return response.data as FriendRequestDTO;
   }
 
+
+  async updateFriendRequest(friendRequest: FriendRequestDTO) {
+
+
+    const response = await this.apiService.patch(`${this.API_PATH}/update`, friendRequest);
+    return response.data as FriendRequestDTO;
+  }
+
   // async deleteUser(userId: string) {
   //   const response = await this.apiService.delete(`${this.API_PATH}/${userId}`);
   //   return response.data as UserDTO;

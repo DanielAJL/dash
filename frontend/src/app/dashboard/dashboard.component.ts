@@ -8,6 +8,7 @@ import { FriendRequestDTO } from '../DTO/FriendRequestDTO';
 import { FriendRequestService } from '../services/friendrequest.service';
 import { ConfirmDialogComponent } from '../dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FriendRequestStatus } from '../enums/FriendRequestStatusEnum';
 
 class viewToggleOptions {
   pendingRequestsView: boolean = false;
@@ -94,7 +95,8 @@ export class DashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
         // modal result true (so confirmed action)
-        console.log(result);
+        freq.status = FriendRequestStatus.Success;
+        await this.friendRequestService.updateFriendRequest(freq);
       } else {
         // modal cancelled
         console.log('fail: cancelled action');

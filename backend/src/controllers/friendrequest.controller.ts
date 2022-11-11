@@ -39,6 +39,18 @@ class FriendRequestController {
     }
   };
 
+
+  public updateFriendRequest = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const friendRequestData: FriendRequestDTO = req.body;
+      const friendRequest: FriendRequestInterface = await this.friendRequestService.patchFriendRequest(friendRequestData);
+
+      res.status(201).json({ data: friendRequest, message: 'patched' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   // public updateFriendRequestById = async (req: Request, res: Response, next: NextFunction) => {
   //   try {
   //     const userId: string = req.params.id;

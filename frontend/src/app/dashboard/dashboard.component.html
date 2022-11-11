@@ -42,7 +42,7 @@
 
 <div class="container" *ngIf="toggleView.pendingRequestsView">
   <div class="row" *ngFor="let userAndRequest of usersAndRequestData">
-    <div class="col-12">
+    <div class="col-12" *ngIf="userAndRequest.friendReq.status === 'pending'">
       <mat-card>
         <ng-container>
           <div class="row">
@@ -57,7 +57,7 @@
             </div>
             <div class="col-3">
               <div class="actions">
-                <button class="btn btn-primary" *ngIf="userAndRequest.friendReq.status === 'pending'">Accept</button>
+                <button class="btn btn-primary">Accept</button>
                 <button class="btn btn-secondary" *ngIf="userAndRequest.friendReq.message"
                   (click)="openDialog(userAndRequest.friendReq)">Open message</button>
               </div>
