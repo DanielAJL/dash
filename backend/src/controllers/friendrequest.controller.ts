@@ -45,7 +45,7 @@ class FriendRequestController {
 
   public updateFriendRequest = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const friendRequestData: FriendRequestDTO = req.body;
+      const friendRequestData: FriendRequestInterface = req.body;
       const friendRequest: FriendRequestInterface = await this.friendRequestService.patchFriendRequest(friendRequestData);
 
       res.status(201).json({ data: friendRequest, message: 'patched' });
