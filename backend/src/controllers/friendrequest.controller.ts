@@ -21,7 +21,11 @@ class FriendRequestController {
   public getPendingFriendRequestsById = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userId: string = req.params.id;
-      const findPendingFriendRequestsByIdData: FriendRequestInterface[] = await this.friendRequestService.findPendingFriendRequestsById(userId);
+      const status: string = req.params.status;
+      const findPendingFriendRequestsByIdData: FriendRequestInterface[] = await this.friendRequestService.findPendingFriendRequestsById(
+        userId,
+        status,
+      );
       res.status(200).json({ data: findPendingFriendRequestsByIdData, message: 'find' });
     } catch (error) {
       next(error);
@@ -38,7 +42,6 @@ class FriendRequestController {
       next(error);
     }
   };
-
 
   public updateFriendRequest = async (req: Request, res: Response, next: NextFunction) => {
     try {

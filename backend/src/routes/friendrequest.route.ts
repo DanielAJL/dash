@@ -15,7 +15,7 @@ class FriendRequestRoute implements Routes {
 
   private initializeRoutes() {
     this.router.get(`${this.path}`, this.friendRequestController.getFriendRequests);
-    this.router.get(`${this.path}/:id`, this.friendRequestController.getPendingFriendRequestsById);
+    this.router.get(`${this.path}/:id/:status`, this.friendRequestController.getPendingFriendRequestsById);
     this.router.post(`${this.path}`, this.friendRequestController.sendFriendRequest);
     this.router.patch(`${this.path}/update`, this.friendRequestController.updateFriendRequest);
     // this.router.patch(`${this.path}/:id`, validationMiddleware(FriendRequestDTO, 'body', false, true, false), this.usersController.updateUser);

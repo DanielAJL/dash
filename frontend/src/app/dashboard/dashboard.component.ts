@@ -33,6 +33,8 @@ export class DashboardComponent implements OnInit {
   experiences = EXPERIENCES;
   languages = LANGUAGES;
   usersAndRequestData: userAndRequestDataInOne[] = [];
+  friends: UserDTO[] = [];
+  friendsRequestData: userAndRequestDataInOne[] = [];
 
   @Input() toggleView: viewToggleOptions = new viewToggleOptions;
 
@@ -63,10 +65,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFriendRequestsAndUsersThatSentThem();
+    this.getFriends();
   }
 
   private getFriendRequestsAndUsersThatSentThem() {
-    this.friendRequestService.getFriendRequestForUser(this.user._id).then(async requests => {
+    this.friendRequestService.getFriendRequestForUser(this.user._id, 'pending').then(async requests => {
       if (requests) {
         const usersForRequests = await this.usersService.getUsersByMultipleIds(requests.map(req => req.from));
 
@@ -83,6 +86,30 @@ export class DashboardComponent implements OnInit {
             }
           }
         }
+      }
+    });
+  }
+
+  private getFriends() {
+    this.friendRequestService.getFriendRequestForUser(this.user._id, 'success').then(async friends => {
+      if (friends) {
+        const usersForRequests = await this.usersService.getUsersByMultipleIds(friends.map(friend => friend.from));
+
+        /**
+         * Match the users that sent a request with a specific request using the `from` key that matches their userId
+         */
+        for (let i = 0; i < usersForRequests.length; i++) {
+          for (let j = 0; j < friends.length; j++) {
+            if (usersForRequests[i]._id === friends[j].from) {
+              let data = new userAndRequestDataInOne();
+              data.user = usersForRequests[i];
+              data.friendReq = friends[j];
+              this.friendsRequestData.push(data);
+            }
+          }
+        }
+        console.log(friends);
+
       }
     });
   }

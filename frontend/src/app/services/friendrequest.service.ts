@@ -16,8 +16,8 @@ export class FriendRequestService {
     return response.data as FriendRequestDTO[];
   }
 
-  async getFriendRequestForUser(userId: string) {
-    const response = await this.apiService.get(`${this.API_PATH}/${userId}`).then(res => {
+  async getFriendRequestForUser(userId: string, status: string) {
+    const response = await this.apiService.get(`${this.API_PATH}/${userId}/${status}`).then(res => {
       if (res)
         return res.data as FriendRequestDTO[];
       return [];

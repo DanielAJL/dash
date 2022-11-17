@@ -13,9 +13,17 @@ class FriendRequestService {
     return friendRequests;
   }
 
-  public async findPendingFriendRequestsById(userId: string): Promise<FriendRequestInterface[]> {
-    const friendRequestsFound: FriendRequestInterface[] = await this.friendRequests.find({ to: userId, status: 'pending' });
-    return friendRequestsFound;
+  public async findPendingFriendRequestsById(userId: string, status: string): Promise<FriendRequestInterface[]> {
+    if (status == 'pending') {
+      const friendRequestsFound: FriendRequestInterface[] = await this.friendRequests.find({ to: userId, status: `${status}` });
+      return friendRequestsFound;
+    } else {
+      const friendRequestsFound: FriendRequestInterface[] = await this.friendRequests.find({
+        $or: [{ to: userId }, { from: userId }],
+        status: `${status}`,
+      });
+      return friendRequestsFound;
+    }
   }
 
   public async createFriendRequest(friendRequestData: FriendRequestDTO): Promise<FriendRequestInterface> {
