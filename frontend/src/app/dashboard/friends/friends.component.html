@@ -1,6 +1,58 @@
 <div class="container">
-  <div class="row" *ngFor="let friend of friends">
-    <div class="col-12" *ngIf="friend.friendReq.status === 'success'">
+  <div class="row">
+    <ng-container *ngFor="let friend of friends; let i = index;">
+      <div class="col-3" *ngIf="i % 2 === 0">
+        <mat-card *ngIf="friend.friendReq.status === 'success'">
+          <ng-container>
+            <div class="row">
+              <div class="col-4">
+                #{{i + 1}}
+
+              </div>
+              <div class="col-8">
+                {{friend.user.name}}
+                <i class="fa-solid fa-circle" [ngClass]="friend.user.online ? 'online' : 'offline'"></i>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <p *ngIf="friend.user.experienceLevel">
+                  <b>experience:</b>
+                  {{friend.user.experienceLevel}}
+                </p>
+              </div>
+            </div>
+          </ng-container>
+        </mat-card>
+      </div>
+
+      <div class="col-3" *ngIf="i % 2 !== 0">
+        <mat-card *ngIf="friend.friendReq.status === 'success'">
+          <ng-container>
+            <div class="row">
+              <div class="col-4">
+                #{{i + 1}}
+              </div>
+              <div class="col-8">
+                {{friend.user.name}}
+                <i class="fa-solid fa-circle" [ngClass]="friend.user.online ? 'online' : 'offline'"></i>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <p *ngIf="friend.user.experienceLevel">
+                  <b>experience:</b>
+                  {{friend.user.experienceLevel}}
+                </p>
+              </div>
+            </div>
+          </ng-container>
+        </mat-card>
+      </div>
+    </ng-container>
+
+
+    <!-- <div class="col-12">
       <mat-card>
         <ng-container>
           <div class="row">
@@ -13,17 +65,10 @@
                 {{friend.user.experienceLevel}}
               </p>
             </div>
-            <!-- <div class="col-3">
-              <div class="actions">
-                <button class="btn btn-primary">Accept</button>
-                <button class="btn btn-secondary" *ngIf="friend.friendReq.message"
-                  (click)="openDialog(friend.friendReq)">Open message</button>
-              </div>
-            </div> -->
           </div>
-
         </ng-container>
       </mat-card>
-    </div>
+    </div> -->
+
   </div>
 </div>
