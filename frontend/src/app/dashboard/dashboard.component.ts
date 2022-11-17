@@ -12,7 +12,7 @@ import { FriendRequestStatus } from '../enums/FriendRequestStatusEnum';
 
 class viewToggleOptions {
   pendingRequestsView: boolean = false;
-  testView: boolean = false;
+  friendsView: boolean = false;
   testViewTwo: boolean = false;
 }
 

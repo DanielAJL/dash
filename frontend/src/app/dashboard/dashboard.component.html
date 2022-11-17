@@ -23,9 +23,9 @@
     </div>
     <div class="col-4">
       <mat-card class="toggle-block friendlist"
-        (click)="updateViewVariables(); toggleView.testView = !toggleView.testView">
+        (click)="updateViewVariables(); toggleView.friendsView = !toggleView.friendsView">
         <div class="block">
-          <p>Test:</p>
+          <p>Friends:</p>
         </div>
       </mat-card>
     </div>
@@ -70,7 +70,7 @@
   </div>
 </div>
 
-<div class="container" *ngIf="toggleView.testView">
+<div class="container" *ngIf="toggleView.friendsView">
   <div class="row">
     <div class="col-12">
       <mat-card>
