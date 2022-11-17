@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row" *ngFor="let friend of friends">
+    <div class="col-12" *ngIf="friend.friendReq.status === 'success'">
+      <mat-card>
+        <ng-container>
+          <div class="row">
+            <div class="col-4">
+              <p><b>From userId:</b> {{friend.user.name}}</p>
+            </div>
+            <div class="col-8">
+              <p *ngIf="friend.user.experienceLevel">
+                <b>experience:</b>
+                {{friend.user.experienceLevel}}
+              </p>
+            </div>
+            <!-- <div class="col-3">
+              <div class="actions">
+                <button class="btn btn-primary">Accept</button>
+                <button class="btn btn-secondary" *ngIf="friend.friendReq.message"
+                  (click)="openDialog(friend.friendReq)">Open message</button>
+              </div>
+            </div> -->
+          </div>
+
+        </ng-container>
+      </mat-card>
+    </div>
+  </div>
+</div>
