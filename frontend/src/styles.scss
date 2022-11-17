@@ -96,6 +96,53 @@ dashboard {
     }
 
   }
+
+  friends {
+    .username {
+      float: right;
+      position: relative;
+      padding-right: 15px;
+
+      .fa-solid.fa-circle {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+      }
+    }
+
+    .experience {
+      display: inline-block;
+      color: #fff;
+      padding: 1px 7.5px;
+      font-weight: 500;
+
+      &.beginner {
+        background-color: rgb(169, 237, 158);
+      }
+
+      &.junior {
+        background: red;
+      }
+
+      &.medior {
+        background: blue;
+      }
+
+      &.senior {
+        background: yellowgreen;
+      }
+    }
+
+    .btn-sm-rect {
+      float: right;
+      background: #b9b9b9;
+      color: #fff;
+      padding: 2px 7.5px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
 }
 
 

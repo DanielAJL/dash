@@ -93,23 +93,21 @@ export class DashboardComponent implements OnInit {
   private getFriends() {
     this.friendRequestService.getFriendRequestForUser(this.user._id, 'success').then(async friends => {
       if (friends) {
-        const usersForRequests = await this.usersService.getUsersByMultipleIds(friends.map(friend => friend.from));
+        const friendsUsers = await this.usersService.getUsersByMultipleIds(friends.map(friend => friend.from));
 
         /**
          * Match the users that sent a request with a specific request using the `from` key that matches their userId
          */
-        for (let i = 0; i < usersForRequests.length; i++) {
+        for (let i = 0; i < friendsUsers.length; i++) {
           for (let j = 0; j < friends.length; j++) {
-            if (usersForRequests[i]._id === friends[j].from) {
+            if (friendsUsers[i]._id === friends[j].from && this.user._id != friendsUsers[i]._id) {
               let data = new userAndRequestDataInOne();
-              data.user = usersForRequests[i];
+              data.user = friendsUsers[i];
               data.friendReq = friends[j];
               this.friendsRequestData.push(data);
             }
           }
         }
-        console.log(friends);
-
       }
     });
   }

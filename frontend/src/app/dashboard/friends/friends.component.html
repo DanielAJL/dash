@@ -5,21 +5,32 @@
         <mat-card *ngIf="friend.friendReq.status === 'success'">
           <ng-container>
             <div class="row">
-              <div class="col-4">
-                #{{i + 1}}
+              <div class="col-3">
+                <span class="index">
+                  #{{i + 1}}
+                </span>
 
               </div>
-              <div class="col-8">
-                {{friend.user.name}}
-                <i class="fa-solid fa-circle" [ngClass]="friend.user.online ? 'online' : 'offline'"></i>
+              <div class="col-9">
+                <span class="username">
+                  {{friend.user.name}}
+                  <i class="fa-solid fa-circle" [ngClass]="friend.user.online ? 'online' : 'offline'"></i>
+                </span>
               </div>
             </div>
             <div class="row">
               <div class="col-12">
-                <p *ngIf="friend.user.experienceLevel">
-                  <b>experience:</b>
+                <p class="experience" *ngIf="friend.user.experienceLevel"
+                  [ngClass]="{'beginner': friend.user.experienceLevel === 'BEGINNER', 'junior': friend.user.experienceLevel === 'JUNIOR', 'medior': friend.user.experienceLevel === 'MEDIOR', 'senior': friend.user.experienceLevel === 'SENIOR'}">
+                  <!-- <b>experience:</b> -->
                   {{friend.user.experienceLevel}}
                 </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <a class="btn-sm-rect" [routerLink]="'../users/profile'" [queryParams]="{id: friend.user._id}"
+                  routerLinkActive="router-link-active">Visit profile</a>
               </div>
             </div>
           </ng-container>
@@ -30,20 +41,32 @@
         <mat-card *ngIf="friend.friendReq.status === 'success'">
           <ng-container>
             <div class="row">
-              <div class="col-4">
-                #{{i + 1}}
+              <div class="col-3">
+                <span class="index">
+                  #{{i + 1}}
+                </span>
+
               </div>
-              <div class="col-8">
-                {{friend.user.name}}
-                <i class="fa-solid fa-circle" [ngClass]="friend.user.online ? 'online' : 'offline'"></i>
+              <div class="col-9">
+                <span class="username">
+                  {{friend.user.name}}
+                  <i class="fa-solid fa-circle" [ngClass]="friend.user.online ? 'online' : 'offline'"></i>
+                </span>
               </div>
             </div>
             <div class="row">
               <div class="col-12">
-                <p *ngIf="friend.user.experienceLevel">
-                  <b>experience:</b>
+                <p class="experience" *ngIf="friend.user.experienceLevel"
+                  [ngClass]="{'junior': friend.user.experienceLevel === 'JUNIOR', 'medior': friend.user.experienceLevel === 'MEDIOR', 'senior': friend.user.experienceLevel === 'SENIOR'}">
+                  <!-- <b>experience:</b> -->
                   {{friend.user.experienceLevel}}
                 </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <a class="btn-sm-rect" [routerLink]="'../users/profile'" [queryParams]="{id: friend.user._id}"
+                  routerLinkActive="router-link-active">Visit profile</a>
               </div>
             </div>
           </ng-container>

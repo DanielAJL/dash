@@ -20,7 +20,6 @@ export class FriendsComponent implements OnInit {
   @Input() friends: userAndRequestDataInOne[]; // decorate the property with @Input()
 
   ngOnInit(): void {
-    console.log(this.friends);
 
   }
 
