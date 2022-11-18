@@ -57,7 +57,7 @@
             <div class="row">
               <div class="col-12">
                 <p class="experience" *ngIf="friend.user.experienceLevel"
-                  [ngClass]="{'junior': friend.user.experienceLevel === 'JUNIOR', 'medior': friend.user.experienceLevel === 'MEDIOR', 'senior': friend.user.experienceLevel === 'SENIOR'}">
+                  [ngClass]="{'beginner': friend.user.experienceLevel === 'BEGINNER', 'junior': friend.user.experienceLevel === 'JUNIOR', 'medior': friend.user.experienceLevel === 'MEDIOR', 'senior': friend.user.experienceLevel === 'SENIOR'}">
                   <!-- <b>experience:</b> -->
                   {{friend.user.experienceLevel}}
                 </p>
