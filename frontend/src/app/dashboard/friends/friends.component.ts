@@ -2,10 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FriendRequestDTO } from 'src/app/DTO/FriendRequestDTO';
 import { UserDTO } from 'src/app/DTO/UserDTO';
 
-class userAndRequestDataInOne {
-  user: UserDTO;
-  friendReq: FriendRequestDTO;
-};
+// class userAndRequestDataInOne {
+//   user: UserDTO;
+//   friends: FriendRequestDTO;
+// };
 
 
 @Component({
@@ -17,7 +17,7 @@ class userAndRequestDataInOne {
 export class FriendsComponent implements OnInit {
 
   constructor() { }
-  @Input() friends: userAndRequestDataInOne[]; // decorate the property with @Input()
+  @Input() friends: UserDTO[]; // decorate the property with @Input()
 
   ngOnInit(): void {
 

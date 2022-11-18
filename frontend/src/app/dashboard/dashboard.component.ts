@@ -93,26 +93,42 @@ export class DashboardComponent implements OnInit {
   private getFriends() {
     this.friendRequestService.getFriendRequestForUser(this.user._id, 'success').then(async friends => {
       console.log(friends);
-
-      if (friends && friends.length) {
-        const friendsUsers = await this.usersService.getUsersByMultipleIds(friends.map(friend => friend.from));
-
-        console.log('test');
-
-        /**
-         * Match the users that sent a request with a specific request using the `from` key that matches their userId
-         */
-        for (let i = 0; i < friendsUsers.length; i++) {
-          for (let j = 0; j < friends.length; j++) {
-            if (friendsUsers[i]._id === friends[j].from && this.user._id != friendsUsers[i]._id) {
-              let data = new userAndRequestDataInOne();
-              data.user = friendsUsers[i];
-              data.friendReq = friends[j];
-              this.friendsRequestData.push(data);
-            }
+      const searchIdList: Array<string> = [];
+      for (let i = 0; i < friends.length; i++) {
+        const friend = friends[i];
+        if ((friend.from == this.user._id || friend.to == this.user._id)) {
+          if (friend.from == this.user._id) {
+            searchIdList.push(friend.to);
+          } else {
+            searchIdList.push(friend.from)
           }
         }
       }
+      const friendsUsers = await this.usersService.getUsersByMultipleIds(searchIdList);
+      //
+
+      this.friends = friendsUsers;
+      console.log(friendsUsers);
+
+      // if (friends && friends.length) {
+      //   const friendsUsers = await this.usersService.getUsersByMultipleIds(friends.map(friend => friend.from));
+
+      //   console.log('test');
+
+      //   /**
+      //    * Match the users that sent a request with a specific request using the `from` key that matches their userId
+      //    */
+      //   for (let i = 0; i < friendsUsers.length; i++) {
+      //     for (let j = 0; j < friends.length; j++) {
+      //       if (friendsUsers[i]._id === friends[j].from && this.user._id != friendsUsers[i]._id) {
+      //         let data = new userAndRequestDataInOne();
+      //         data.user = friendsUsers[i];
+      //         data.friendReq = friends[j];
+      //         this.friendsRequestData.push(data);
+      //       }
+      //     }
+      //   }
+      // }
     });
   }
 

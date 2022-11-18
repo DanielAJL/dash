@@ -27,8 +27,8 @@
         (click)="updateViewVariables(); toggleView.friendsView = !toggleView.friendsView">
         <div class="block">
           <p>Friends:</p>
-          <span class="amount" *ngIf="friendsRequestData.length">
-            {{friendsRequestData.length}}
+          <span class="amount" *ngIf="friends.length">
+            {{friends.length}}
           </span>
         </div>
       </mat-card>
@@ -74,7 +74,7 @@
   </div>
 </div>
 
-<friends *ngIf="toggleView.friendsView" [friends]="friendsRequestData"></friends>
+<friends *ngIf="toggleView.friendsView" [friends]="friends"></friends>
 
 
 
