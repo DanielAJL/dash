@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit {
 
   private getFriendRequestsAndUsersThatSentThem() {
     this.friendRequestService.getFriendRequestForUser(this.user._id, 'pending').then(async requests => {
-      if (requests) {
+      if (requests && requests.length) {
         const usersForRequests = await this.usersService.getUsersByMultipleIds(requests.map(req => req.from));
 
         /**
@@ -92,8 +92,12 @@ export class DashboardComponent implements OnInit {
 
   private getFriends() {
     this.friendRequestService.getFriendRequestForUser(this.user._id, 'success').then(async friends => {
-      if (friends) {
+      console.log(friends);
+
+      if (friends && friends.length) {
         const friendsUsers = await this.usersService.getUsersByMultipleIds(friends.map(friend => friend.from));
+
+        console.log('test');
 
         /**
          * Match the users that sent a request with a specific request using the `from` key that matches their userId

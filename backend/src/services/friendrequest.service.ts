@@ -18,6 +18,8 @@ class FriendRequestService {
       const friendRequestsFound: FriendRequestInterface[] = await this.friendRequests.find({ to: userId, status: `${status}` });
       return friendRequestsFound;
     } else {
+      console.log(status);
+
       const friendRequestsFound: FriendRequestInterface[] = await this.friendRequests.find({
         $or: [{ to: userId }, { from: userId }],
         status: `${status}`,
